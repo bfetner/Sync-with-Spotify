@@ -17,109 +17,125 @@ import { Redirect } from "react-router-dom";
 const albumList = [
   {
     title: "Pick Up Your Feelings",
-    url: "./assets/1.PNG",
+    url: "../../assets/1.PNG",
   },
   {
     title: "Hunger",
-    url: "./assets/2.PNG",
+    url: "../../assets/2.PNG",
   },
   {
     title: "no love",
-    url: "./assets/3.PNG",
+    url: "../../assets/3.PNG",
   },
   {
     title: "Killuminati",
-    url: "./assets/4.PNG",
+    url: "../../assets/4.PNG",
   },
 
   {
     title: "no,no",
-    url: "./assets/5.PNG",
+    url: "../../assets/5.PNG",
   },
   {
     title: "Crime Pays",
-    url: "./assets/6.jpg",
+    url: "../../assets/6.jpg",
   },
   {
     title: "Ninety",
-    url: "./assets/7.jpg",
+    url: "../../assets/7.jpg",
   },
 
   {
     title: "Souldfood",
-    url: "./assets/8.jpg",
+    url: "../../assets/8.jpg",
   },
   {
     title: "Violent Crimes",
-    url: "./assets/9.jpg",
+    url: "../../assets/9.jpg",
   },
   {
     title: "Been Waiting!",
-    url: "./assets/10.jpg",
+    url: "../../assets/10.jpg",
   },
 
   {
     title: "Leray",
-    url: "./assets/11.jpg",
+    url: "../../assets/11.jpg",
   },
   {
     title: "HONEST",
-    url: "./assets/12.jpg",
+    url: "../../assets/12.jpg",
   },
   {
     title: "WOLF",
-    url: "./assets/13.jpg",
+    url: "../../assets/13.jpg",
   },
 
   {
     title: "Trying",
-    url: "./assets/14.jpg",
+    url: "../../assets/14.jpg",
   },
   {
     title: "A Calabasas Freestyle",
-    url: "./assets/15.jpg",
+    url: "../../assets/15.jpg",
   },
   {
     title: "Father Stretch My Hands",
-    url: "./assets/16.jpg",
+    url: "../../assets/16.jpg",
   },
 
   {
     title: "Frank's Track",
-    url: "./assets/17.jpg",
+    url: "../../assets/17.jpg",
   },
   {
     title: "No More Parties In LA",
-    url: "./assets/18.jpg",
+    url: "../../assets/18.jpg",
   },
   {
     title: "Champion",
-    url: "./assets/19.png",
+    url: "../../assets/19.png",
   },
   {
     title: "Once Upon A Time(Freestyle)",
-    url: "./assets/20.PNG",
+    url: "../../assets/20.PNG",
   },
 ];
 
+const addVotesToSong = (song) => {
+  let numOfVotes = [Math.floor(Math.random() * 10)];
+  let title = song.title;
+  let url = song.url;
+  return {
+    title: title,
+    url: url,
+    vote: numOfVotes,
+  };
+};
+
 const Room = (props) => {
+  const roomName = props.match.params.roomName;
+  const roomGenre = props.match.params.roomGenre;
+
   const [songsForQueue, setSongsForQueue] = useState([
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
-    albumList[Math.floor(Math.random() * 19)],
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
   ]);
 
   const [currentSong, setCurrentSong] = useState(
@@ -140,10 +156,6 @@ const Room = (props) => {
     "Search for a Song"
   );
 
-  if (!props.location.state) {
-    return <Redirect to="/Home" />;
-  }
-
   const switchQueueSearchsong = () => {
     setShowQueue(!showQueue);
     if (showQueue) {
@@ -153,13 +165,13 @@ const Room = (props) => {
     }
   };
 
+  console.log(props);
+
   return (
     <div>
       <div class="main room-main">
-        <strong style={{ fontSize: "xxx-large" }}>
-          {props.location.state.roomName}
-        </strong>
-        <em>Room Genre: {props.location.state.roomGenre}</em>
+        <strong style={{ fontSize: "xxx-large" }}>{roomName}</strong>
+        <em>Room Genre: {roomGenre}</em>
         <div class="grid1">
           <div class="queue1">
             {showQueue && <Queue queueSongs={songsForQueue} />}
@@ -180,19 +192,7 @@ const Room = (props) => {
             <MusicPlayer currentSong={songs} />
           </div>
           <div class="chatflex">
-            <Chat roomName={props.location.state.roomName} />
-            {/* The {props.location.state.roomName} Chat Room
-            <div class="chatdiv">
-              <div style={{ marginTop: "15px", marginLeft: "15px" }}></div>
-              <div style={{ margin: "15px" }}>
-                <div>Frank: What is this song?</div>
-                <div>Ashley: I don't know, but I like it!</div>
-              </div>
-            </div>
-            <div style={{ marginTop: "15px" }}>
-              <input type="text" />
-              <button>Send</button>
-            </div> */}
+            <Chat roomName={roomName} />
           </div>
         </div>
       </div>

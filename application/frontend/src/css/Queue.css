@@ -41,11 +41,12 @@
 }
 
 .songdiv-song-title {
-  width: 230px;
+  width: 180px;
   overflow: hidden;
-  white-space: nowrap;
+  height: 50px;
 }
 
 .song-checkbox {
   margin-left: 10px;
+  align-self: center;
 }

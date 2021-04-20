@@ -1,4 +1,4 @@
-import React, { Component, useState, setState } from "react";
+import React, { Component, useState, setState, Link } from "react";
 import "antd/dist/antd.css";
 import { Form, Input, Button, Checkbox, Modal, message, Select } from "antd";
 import Axios from "axios";
@@ -108,7 +108,7 @@ const Create = (props) => {
     var data = {
       room_name: roomName,
       genre: roomGenre,
-      roomImageUrl : room_url.url
+      roomImageUrl: room_url.url,
     };
     Axios.post("http://localhost:8000/api/adds/", data)
       .then((res) => {
@@ -141,6 +141,8 @@ const Create = (props) => {
   const handleOk = () => {
     setIsModalVisible(false);
     if (validateRN(roomName) && roomGenre && tosStatus) {
+      console.log("handleOk");
+
       props.history.push({
         pathname: "/Room",
         state: { roomName: roomName, roomGenre: roomGenre },
@@ -151,7 +153,7 @@ const Create = (props) => {
   const [modalMessage, setModalMessage] = useState();
   const [successModalMessage, setSuccessModalMessage] = useState();
 
-  const onClickFunks = () => {
+  /* const onClickFunks = () => {
     setModalMessage("");
     setSuccessModalMessage("");
     if (!validateRN(roomName)) {
@@ -170,7 +172,7 @@ const Create = (props) => {
       insertData();
       showModal();
     }
-  };
+  }; */
 
   const confirmTos = () => {
     setTosStatus(!tosStatus);
@@ -241,7 +243,8 @@ const Create = (props) => {
           <Button
             type="primary"
             htmlType="submit"
-            onClick={() => onClickFunks()}
+            href={"/Room/" + roomGenre + "/" + roomName}
+            onClick={() => insertData()}
             className="sync-button-color"
           >
             Submit
