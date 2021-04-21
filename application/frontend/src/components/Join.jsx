@@ -94,18 +94,11 @@ const Join = () => {
             <Row style={{margin: "25px 0"}}>
                 <Col xs={24}>
                     {options &&
-                        <Row gutter={16}>
-                            <Col xs={20} md={6}>
-                                <Dropdown 
-                                overlay={menu} 
-                                overlayClassName ="join_dropdown"
-                                >
-                                    <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                                    Search <DownOutlined />
-                                    </a>
-                                </Dropdown>
+                        <Row gutter={16} align='middle'>
+                            <Col span={12} offset={6} >
+                                <div>
                                 <AutoComplete
-                                    style={{width: "100%"}} 
+                                    style={{width: "40%" ,marginLeft:"300px"}} 
                                     onSearch={(value) => {
                                         setSearchValue(value)
                                         console.log(value)
@@ -128,7 +121,16 @@ const Join = () => {
                                     option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
                                     }
                                 >
-                                </AutoComplete>                        
+                                </AutoComplete>        
+                                <Dropdown 
+                                overlay={menu} 
+                                overlayClassName ="join_dropdown"
+                                >
+                                    <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                    Search <DownOutlined />
+                                    </a>
+                                </Dropdown>  
+                                </div>              
                             </Col>
                             
                         </Row>
