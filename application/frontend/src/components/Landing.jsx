@@ -27,12 +27,16 @@ const Landing = () => {
           className="img-fluid"
           style={{ filter: "brightness(30%)", width: "100%", height: "740px" }}
         />
+        <figcaption className="logo">
+          <img src="../assets/logoImage2.png" style={{ width: "135px", marginRight: "10px" }}></img>
+        </figcaption>
         <figcaption className="banner">Welcome to Sync!</figcaption>
         <figcaption className="subtext1">
           Share your spotify songs in one of our listening rooms!
           <br />
           Listen to music and chat with friends and the community!
         </figcaption>
+        
         <figcaption className="landingButton">
           <Link
             to="/Home"

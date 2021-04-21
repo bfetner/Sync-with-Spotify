@@ -1,10 +1,27 @@
 import React, { Component, useState, setState, Link } from "react";
 import "antd/dist/antd.css";
-import { Form, Input, Button, Checkbox, Modal, message, Select } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Checkbox,
+  Modal,
+  message,
+  Select,
+  Radio,
+} from "antd";
 import Axios from "axios";
 import "../css/Create.css";
 import Room from "./Room";
-import { withRouter, useHistory, useLocation } from "react-router-dom";
+/* import { serverPath } from '../path.js' */
+
+import {
+  withRouter,
+  useHistory,
+  useLocation,
+  Router,
+  Redirect,
+} from "react-router-dom";
 
 const albumList = [
   {
@@ -101,16 +118,24 @@ const Create = (props) => {
 
   const [roomName, setRoomName] = useState();
   const [roomGenre, setGenre] = useState();
+  const [roomStatus, setRoomStatus] = useState(1);
   const [tosStatus, setTosStatus] = useState(false);
 
-  const insertData = () => {
-    console.log("roomName: " + roomName + ", roomGenre: " + roomGenre);
+  const insertData = (rn, rg) => {
+    const roomId = Math.floor(Math.random() * 2000000000);
+    console.log(
+      "roomName: " + rn + ", roomGenre: " + rg + ", roomId: " + roomId
+    );
     var data = {
-      room_name: roomName,
-      genre: roomGenre,
+      room_name: rn,
+      genre: rg,
       roomImageUrl: room_url.url,
+      id: roomId,
     };
+    console.log("insertData");
+    console.log(data);
     Axios.post("http://localhost:8000/api/adds/", data)
+      /* Axios.post(serverPath.local + 'api/adds/', data) */
       .then((res) => {
         console.log("hi");
         setRoomName("");
@@ -140,39 +165,62 @@ const Create = (props) => {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    if (validateRN(roomName) && roomGenre && tosStatus) {
+    console.log(modalRoomName);
+    console.log(validateRN(modalRoomName));
+    console.log(modalRoomGenre);
+    console.log(modalRoomStatus);
+    console.log(modalTosStatus);
+    if (validateRN(modalRoomName) && modalRoomGenre && modalTosStatus) {
       console.log("handleOk");
 
-      props.history.push({
-        pathname: "/Room",
-        state: { roomName: roomName, roomGenre: roomGenre },
-      });
+      props.history.push(
+        "/Room/" + modalRoomGenre + "/" + modalRoomName + "/" + 0
+      );
     }
   };
 
   const [modalMessage, setModalMessage] = useState();
   const [successModalMessage, setSuccessModalMessage] = useState();
+  const [modalRoomName, setModalRoomName] = useState();
+  const [modalRoomGenre, setModalRoomGenre] = useState();
+  const [modalRoomStatus, setModalRoomStatus] = useState();
+  const [modalTosStatus, setModalTosStatus] = useState();
 
-  /* const onClickFunks = () => {
+  const onClickFunks = () => {
+    console.log("roomStatus");
+    console.log(roomStatus);
+    const clickRoomName = roomName;
+    const clickRoomGenre = roomGenre;
+    const clickRoomStatus = roomStatus;
+    const clickTosStatus = tosStatus;
+    setModalRoomName(clickRoomName);
+    setModalRoomGenre(clickRoomGenre);
+    if (clickRoomStatus == 1) {
+      setModalRoomStatus("Public Room");
+    } else {
+      setModalRoomStatus("Private Room");
+    }
+    setModalTosStatus(clickTosStatus);
+
     setModalMessage("");
     setSuccessModalMessage("");
-    if (!validateRN(roomName)) {
+    if (!validateRN(clickRoomName)) {
       setModalMessage("Invalid roomname, must input at least one character.");
       showModal();
-    } else if (!roomGenre) {
+    } else if (!clickRoomGenre) {
       setModalMessage("Please select a genre from the dropdown menu.");
       showModal();
-    } else if (!tosStatus) {
+    } else if (!clickTosStatus) {
       setModalMessage("You must accept the terms for service.");
       showModal();
     } else {
       setSuccessModalMessage(
         "You have successfully created a room! Press ok to continue."
       );
-      insertData();
       showModal();
+      insertData(clickRoomName, clickRoomGenre);
     }
-  }; */
+  };
 
   const confirmTos = () => {
     setTosStatus(!tosStatus);
@@ -204,6 +252,12 @@ const Create = (props) => {
         <Form.Item
           label="Roomname"
           name="roomname"
+          rules={[
+            {
+              required: true,
+              message: "Please input a room name.",
+            },
+          ]}
           //rules={[{ required: true, message: "Please input your roomname!" }]}
         >
           <Input
@@ -217,6 +271,12 @@ const Create = (props) => {
         <Form.Item
           label="Genre"
           name="genre"
+          rules={[
+            {
+              required: true,
+              message: "Please select a genre.",
+            },
+          ]}
           //rules={[{ required: true, message: 'Province is required' }]}
         >
           <Select
@@ -233,8 +293,27 @@ const Create = (props) => {
         </Form.Item>
 
         <Form.Item {...otherItemLayout}>
-          <Checkbox onChange={confirmTos} className="text-color">
-            {" "}
+          <Radio.Group
+            onChange={(e) => {
+              setRoomStatus(e.target.value);
+            }}
+            value={roomStatus}
+          >
+            <Radio className="text-color" value={1}>
+              Public Room
+            </Radio>
+            <Radio className="text-color" value={2}>
+              Private Room
+            </Radio>
+          </Radio.Group>
+        </Form.Item>
+
+        <Form.Item {...otherItemLayout}>
+          <Checkbox
+            onChange={confirmTos}
+            required="required"
+            className="text-color"
+          >
             Click here to accept our Terms of Service.
           </Checkbox>
         </Form.Item>
@@ -243,8 +322,8 @@ const Create = (props) => {
           <Button
             type="primary"
             htmlType="submit"
-            href={"/Room/" + roomGenre + "/" + roomName}
-            onClick={() => insertData()}
+            /* href={"/Room/" + roomGenre + "/" + roomName} */
+            onClick={() => onClickFunks()}
             className="sync-button-color"
           >
             Submit
@@ -260,10 +339,13 @@ const Create = (props) => {
         cancelButtonProps={{ style: { display: "none" } }}
       >
         <p>
-          <strong>Room Name:</strong> {roomName}
+          <strong>Room Name:</strong> {modalRoomName}
         </p>
         <p>
-          <strong>Genre:</strong> {roomGenre}
+          <strong>Genre:</strong> {modalRoomGenre}
+        </p>
+        <p>
+          <strong>Status:</strong> {modalRoomStatus}
         </p>
         <p>{successModalMessage}</p>
         <p style={{ color: "red" }}>{modalMessage}</p>

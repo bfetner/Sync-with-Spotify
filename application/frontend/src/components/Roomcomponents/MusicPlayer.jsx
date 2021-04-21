@@ -3,8 +3,8 @@ import React, { useState, useRef, useEffect } from "react";
 function MusicPlayer(props) {
   console.log(props);
   const audioEl = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [buttonImage, setButtonImage] = useState("../../assets/play.png");
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [buttonImage, setButtonImage] = useState("../../assets/pause.png");
 
   useEffect(() => {
     if (isPlaying) {

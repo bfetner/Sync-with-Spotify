@@ -23,7 +23,11 @@ class App extends React.Component {
             <Route path="/Home" exact component={Home} />
             <Route path="/Createpage" exact component={Createpage} />
             <Route path="/Join" exact component={Join} />
-            <Route path="/Room/:roomGenre/:roomName" exact component={Room} />
+            <Route
+              path="/Room/:roomGenre/:roomName/:roomAge"
+              exact
+              component={Room}
+            />
             <Route path="/Contact" exact component={Contactus}></Route>
             <Route path="/Aboutus" exact component={Aboutus}></Route>
           </Switch>

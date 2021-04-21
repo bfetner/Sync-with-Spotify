@@ -1,5 +1,14 @@
 import React, { Component, useEffect, useState } from "react";
-import { Form, Input, Button, Checkbox, Row, Col, Typography, Card } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Checkbox,
+  Row,
+  Col,
+  Typography,
+  Card,
+} from "antd";
 import { Link, useHistory } from "react-router-dom";
 import Axios from "axios";
 import "../css/Home.css";
@@ -9,10 +18,10 @@ const Home = (props) => {
   {
     /* For creating rooms */
   }
-  console.log(props)
+  console.log(props);
   const [roomName, setRoomName] = useState();
   const [roomGenre, setGenre] = useState();
-  const history = useHistory()
+  const history = useHistory();
 
   const insertData = () => {
     var data = {
@@ -31,32 +40,35 @@ const Home = (props) => {
   {
     /* For searching rooms */
   }
-  
+
   const [viewData, setViewData] = useState([]);
-  
-  
-  useEffect(() =>{
-      
+
+  useEffect(() => {
     Axios.get("http://localhost:8000/api/adds/")
-    .then((res) => {
-      console.log(res.data)
-      setViewData(res.data)
-    })
-    .catch((er) => console.log(er));
-},[])
-{
-  /* For joining rooms */
-}
-  const joinRoom = () => {
-    
-    var rooms = document.getElementById('rooms').value
-    console.log('hi')
-    console.log(rooms)
-    props.history.push({
-      pathname: "/Room",
-      state: { roomName: roomName, roomGenre: roomGenre }
-    });
+      .then((res) => {
+        console.log(res.data);
+        setViewData(res.data);
+      })
+      .catch((er) => console.log(er));
+  }, []);
+  {
+    /* For joining rooms */
   }
+  const joinRoom = () => {
+    var rooms = document.getElementById("rooms").value;
+    console.log("hi");
+    console.log(rooms);
+    const resultRoomGenre = "unknown";
+    const resultRoomName = "unknown";
+    props.history.push(
+      "/Room/" +
+        resultRoomGenre +
+        "/" +
+        resultRoomName +
+        "/" +
+        (Math.floor(Math.random() * 6) + 1)
+    );
+  };
 
   console.log(props.displayCreate);
 
@@ -92,45 +104,62 @@ const Home = (props) => {
 
         <div className="spacer"></div>
 
-        <div> 
-    
-      <div class="main">
-        <h1 style={{ marginTop: "30px", marginBottom: "30px" }}>
-         Recommended Rooms
-        </h1>
-      </div>
-      <Row gutter={[40, 16]}>
-      {  viewData?.map((d,index) => <Col className="gutter-row" span={6}>
-          <Card 
-              
-              className="join_cards"
-              hoverable
-              bordered
-              style={{ width: "80%" , marginLeft: "30px"}}
-              cover={<img alt="example"src={d.roomImageUrl} />}
-          >
-          <Row>
-            
-              <Col xs={24} className="join_text">
-                Room Name:<Typography.Text  className="join_text" style={{float: "right"}} id="rooms" value={d.room_name} >{d.room_name}</Typography.Text>                                        
+        <div>
+          <div class="main">
+            <div
+              style={{ marginTop: "30px", marginBottom: "30px" }}
+              className="home-top-text-block"
+            >
+              Recommended Rooms
+            </div>
+          </div>
+          <Row gutter={[40, 16]}>
+            {viewData?.map((d, index) => (
+              <Col className="gutter-row" span={6}>
+                <Card
+                  className="join_cards"
+                  hoverable
+                  bordered
+                  style={{ width: "80%", marginLeft: "30px" }}
+                  cover={<img alt="example" src={d.roomImageUrl} />}
+                >
+                  <Row>
+                    <Col xs={24} className="join_text">
+                      Room Name:
+                      <Typography.Text
+                        className="join_text"
+                        style={{ float: "right" }}
+                        id="rooms"
+                        value={d.room_name}
+                      >
+                        {d.room_name}
+                      </Typography.Text>
+                    </Col>
+
+                    <Col xs={24} className="join_text">
+                      Genre:
+                      <Typography.Text
+                        className="join_text"
+                        style={{ float: "right" }}
+                      >
+                        {d.genre}
+                      </Typography.Text>
+                    </Col>
+                    <Col xs={24}>
+                      <Button
+                        type="link"
+                        onClick={() => joinRoom()}
+                        style={{ float: "right" }}
+                      >
+                        Click to join
+                      </Button>
+                    </Col>
+                  </Row>
+                </Card>
               </Col>
-          
-              <Col xs={24} className="join_text">
-                Genre:<Typography.Text className="join_text" style={{float: "right"}}  >{d.genre}</Typography.Text>                                        
-              </Col>
-              <Col xs={24}>
-                 <Button type="link" onClick={()=>joinRoom()} style={{float: "right"}}>Click to join</Button>                                      
-              </Col>
+            ))}
           </Row>
-        </Card>
-        
-        </Col>)}
-
-      </Row>  
-      
-        
-
-    </div>
+        </div>
 
         {/*<h1 style={{ marginTop: "30px", marginBottom: "30px" }}>
           Welcome to Sync!

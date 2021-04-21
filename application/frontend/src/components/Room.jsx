@@ -14,128 +14,150 @@ import { Redirect } from "react-router-dom";
   */
 }
 
+const useForceUpdate = () => {
+  const [_, setState] = useState(false);
+  return () => setState((val) => !val);
+};
+
 const albumList = [
   {
     title: "Pick Up Your Feelings",
-    url: "../../assets/1.PNG",
+    url: "../../../assets/1.PNG",
+    music: "https://www.freesound.org/data/previews/338/338825_1648170-lq.mp3",
   },
   {
     title: "Hunger",
-    url: "../../assets/2.PNG",
+    url: "../../../assets/2.PNG",
+    music:
+      "http://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg",
   },
   {
     title: "no love",
-    url: "../../assets/3.PNG",
+    url: "../../../assets/3.PNG",
+    music: "../../../assets/songs/1.mp3",
   },
   {
     title: "Killuminati",
-    url: "../../assets/4.PNG",
+    url: "../../../assets/4.PNG",
+    music:
+      "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/lose.ogg",
   },
 
   {
     title: "no,no",
-    url: "../../assets/5.PNG",
+    url: "../../../assets/5.PNG",
+    music:
+      "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/race1.ogg",
   },
   {
     title: "Crime Pays",
-    url: "../../assets/6.jpg",
+    url: "../../../assets/6.jpg",
+    music:
+      "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/menu.ogg",
   },
   {
     title: "Ninety",
-    url: "../../assets/7.jpg",
+    url: "../../../assets/7.jpg",
+    music:
+      "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/win.ogg",
   },
 
   {
     title: "Souldfood",
-    url: "../../assets/8.jpg",
+    url: "../../../assets/8.jpg",
+    music: "../../../assets/songs/2.mp3",
   },
   {
     title: "Violent Crimes",
-    url: "../../assets/9.jpg",
+    url: "../../../assets/9.jpg",
+    music: "../../../assets/songs/3.mp3",
   },
   {
     title: "Been Waiting!",
-    url: "../../assets/10.jpg",
+    url: "../../../assets/10.jpg",
+    music: "../../../assets/songs/4.mp3",
   },
 
   {
     title: "Leray",
-    url: "../../assets/11.jpg",
+    url: "../../../assets/11.jpg",
+    music: "../../../assets/songs/5.mp3",
   },
   {
     title: "HONEST",
-    url: "../../assets/12.jpg",
+    url: "../../../assets/12.jpg",
+    music: "../../../assets/songs/6.mp3",
   },
   {
     title: "WOLF",
-    url: "../../assets/13.jpg",
+    url: "../../../assets/13.jpg",
+    music: "../../../assets/songs/7.mp3",
   },
 
   {
     title: "Trying",
-    url: "../../assets/14.jpg",
+    url: "../../../assets/14.jpg",
+    music: "../../../assets/songs/8.mp3",
   },
   {
     title: "A Calabasas Freestyle",
-    url: "../../assets/15.jpg",
+    url: "../../../assets/15.jpg",
+    music: "../../../assets/songs/9.mp3",
   },
   {
     title: "Father Stretch My Hands",
-    url: "../../assets/16.jpg",
+    url: "../../../assets/16.jpg",
+    music: "../../../assets/songs/10.mp3",
   },
 
   {
     title: "Frank's Track",
-    url: "../../assets/17.jpg",
+    url: "../../../assets/17.jpg",
+    music: "../../../assets/songs/11.mp3",
   },
   {
     title: "No More Parties In LA",
-    url: "../../assets/18.jpg",
+    url: "../../../assets/18.jpg",
+    music: "../../../assets/songs/12.mp3",
   },
   {
     title: "Champion",
-    url: "../../assets/19.png",
+    url: "../../../assets/19.png",
+    music: "../../../assets/songs/13.mp3",
   },
   {
     title: "Once Upon A Time(Freestyle)",
-    url: "../../assets/20.PNG",
+    url: "../../../assets/20.PNG",
+    music: "../../../assets/songs/14.mp3",
   },
 ];
 
-const addVotesToSong = (song) => {
-  let numOfVotes = [Math.floor(Math.random() * 10)];
+const prepSongsForQueue = (song) => {
+  let queueSongId = Math.floor(Math.random() * 1000000);
+  let numOfVotes = Math.floor(Math.random() * 20);
   let title = song.title;
   let url = song.url;
   return {
     title: title,
     url: url,
     vote: numOfVotes,
+    queueSongId: queueSongId,
+    userVote: false,
   };
 };
 
 const Room = (props) => {
   const roomName = props.match.params.roomName;
   const roomGenre = props.match.params.roomGenre;
+  const roomAge = props.match.params.roomAge;
+  const forceUpdate = useForceUpdate();
 
   const [songsForQueue, setSongsForQueue] = useState([
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
-    addVotesToSong(albumList[Math.floor(Math.random() * 19)]),
+    {
+      title: "0",
+      url: "0",
+      music: "0",
+    },
   ]);
 
   const [currentSong, setCurrentSong] = useState(
@@ -146,8 +168,7 @@ const Room = (props) => {
     song_id: "1",
     songName: currentSong.title,
     artist: "unknown",
-    songUrl:
-      "https://www.freesound.org/data/previews/338/338825_1648170-lq.mp3",
+    songUrl: currentSong.music,
     songImageUrl: currentSong.url,
   });
 
@@ -165,7 +186,59 @@ const Room = (props) => {
     }
   };
 
-  console.log(props);
+  const updateQueueVote = (incomingQueueSongId) => {
+    const modifyingQueue = songsForQueue;
+    var findQueueSong = modifyingQueue.filter((obj) => {
+      return obj.queueSongId === incomingQueueSongId;
+    });
+    if (findQueueSong[0]) {
+      console.log(incomingQueueSongId);
+      console.log(findQueueSong[0].vote);
+      if (!findQueueSong[0].userVote) {
+        findQueueSong[0].vote = findQueueSong[0].vote + 1;
+        findQueueSong[0].userVote = true;
+      } else {
+        findQueueSong[0].vote = findQueueSong[0].vote - 1;
+        findQueueSong[0].userVote = false;
+      }
+      console.log(incomingQueueSongId);
+      console.log(findQueueSong[0].vote);
+    }
+    setSongsForQueue(modifyingQueue);
+    forceUpdate();
+  };
+
+  const addSongToQueue = (title) => {
+    const newSong = albumList.filter((obj) => {
+      return obj.title === title;
+    });
+    const prepNewSong = prepSongsForQueue(newSong[0]);
+    prepNewSong.vote = 0;
+    const modifyingQueue = songsForQueue;
+    modifyingQueue.push(prepNewSong);
+    switchQueueSearchsong();
+  };
+
+  const [roomIsSet, setRoomIsSet] = useState(false);
+  const startingSongsForRoom = () => {
+    if (!roomIsSet) {
+      setRoomIsSet(true);
+      for (var i = 0; i < roomAge; i++) {
+        const newSong = albumList[Math.floor(Math.random() * 19)];
+
+        const title = newSong.title;
+        const prepNewSong = prepSongsForQueue(newSong);
+        prepNewSong.vote = 0;
+        const modifyingQueue = songsForQueue;
+        modifyingQueue.push(prepNewSong);
+
+        console.log("For Lopp");
+        console.log(newSong.title);
+      }
+    }
+  };
+
+  startingSongsForRoom();
 
   return (
     <div>
@@ -174,8 +247,18 @@ const Room = (props) => {
         <em>Room Genre: {roomGenre}</em>
         <div class="grid1">
           <div class="queue1">
-            {showQueue && <Queue queueSongs={songsForQueue} />}
-            {!showQueue && <SongSearch avaliableSongs={albumList} />}
+            {showQueue && (
+              <Queue
+                queueSongs={songsForQueue}
+                updateQueueVote={updateQueueVote}
+              />
+            )}
+            {!showQueue && (
+              <SongSearch
+                avaliableSongs={albumList}
+                addSongToQueue={addSongToQueue}
+              />
+            )}
             <Button
               type="primary"
               htmlType="submit"

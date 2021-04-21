@@ -2,7 +2,7 @@
 
 .banner {
     position: absolute;
-    bottom: 35rem;
+    bottom: 31rem;
     left: 38.5%;
     font-size: 4em;
     margin-bottom: auto;
@@ -11,7 +11,7 @@
 
 .subtext1 {
     position: absolute;
-    bottom: 28rem;
+    bottom: 24rem;
     left: 33%;
     font-size: 1.8em;
     vertical-align: middle;
@@ -20,9 +20,15 @@
 
 .landingButton {
     position: absolute;
-    bottom: 15rem;
+    bottom: 11rem;
     left: 44%;
     font-size: 2em;
     vertical-align: middle;
 
+}
+
+.logo {
+    position: absolute;
+    bottom: 38rem;
+    left: 4%;
 }
