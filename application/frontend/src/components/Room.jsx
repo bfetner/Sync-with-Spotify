@@ -22,113 +22,113 @@ const useForceUpdate = () => {
 const albumList = [
   {
     title: "Pick Up Your Feelings",
-    url: "../../../assets/1.PNG",
+    url: "../../../../assets/1.PNG",
     music: "https://www.freesound.org/data/previews/338/338825_1648170-lq.mp3",
   },
   {
     title: "Hunger",
-    url: "../../../assets/2.PNG",
+    url: "../../../../assets/2.PNG",
     music:
       "http://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg",
   },
   {
     title: "no love",
-    url: "../../../assets/3.PNG",
-    music: "../../../assets/songs/1.mp3",
+    url: "../../../../assets/3.PNG",
+    music: "../../../../assets/songs/1.mp3",
   },
   {
     title: "Killuminati",
-    url: "../../../assets/4.PNG",
+    url: "../../../../assets/4.PNG",
     music:
       "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/lose.ogg",
   },
 
   {
     title: "no,no",
-    url: "../../../assets/5.PNG",
+    url: "../../../../assets/5.PNG",
     music:
       "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/race1.ogg",
   },
   {
     title: "Crime Pays",
-    url: "../../../assets/6.jpg",
+    url: "../../../../assets/6.jpg",
     music:
       "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/menu.ogg",
   },
   {
     title: "Ninety",
-    url: "../../../assets/7.jpg",
+    url: "../../../../assets/7.jpg",
     music:
       "http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/win.ogg",
   },
 
   {
     title: "Souldfood",
-    url: "../../../assets/8.jpg",
-    music: "../../../assets/songs/2.mp3",
+    url: "../../../../assets/8.jpg",
+    music: "../../../../assets/songs/2.mp3",
   },
   {
     title: "Violent Crimes",
-    url: "../../../assets/9.jpg",
-    music: "../../../assets/songs/3.mp3",
+    url: "../../../../assets/9.jpg",
+    music: "../../../../assets/songs/3.mp3",
   },
   {
     title: "Been Waiting!",
-    url: "../../../assets/10.jpg",
-    music: "../../../assets/songs/4.mp3",
+    url: "../../../../assets/10.jpg",
+    music: "../../../../assets/songs/4.mp3",
   },
 
   {
     title: "Leray",
-    url: "../../../assets/11.jpg",
-    music: "../../../assets/songs/5.mp3",
+    url: "../../../../assets/11.jpg",
+    music: "../../../../assets/songs/5.mp3",
   },
   {
     title: "HONEST",
-    url: "../../../assets/12.jpg",
-    music: "../../../assets/songs/6.mp3",
+    url: "../../../../assets/12.jpg",
+    music: "../../../../assets/songs/6.mp3",
   },
   {
     title: "WOLF",
-    url: "../../../assets/13.jpg",
-    music: "../../../assets/songs/7.mp3",
+    url: "../../../../assets/13.jpg",
+    music: "../../../../assets/songs/7.mp3",
   },
 
   {
     title: "Trying",
-    url: "../../../assets/14.jpg",
-    music: "../../../assets/songs/8.mp3",
+    url: "../../../../assets/14.jpg",
+    music: "../../../../assets/songs/8.mp3",
   },
   {
     title: "A Calabasas Freestyle",
-    url: "../../../assets/15.jpg",
-    music: "../../../assets/songs/9.mp3",
+    url: "../../../../assets/15.jpg",
+    music: "../../../../assets/songs/9.mp3",
   },
   {
     title: "Father Stretch My Hands",
-    url: "../../../assets/16.jpg",
-    music: "../../../assets/songs/10.mp3",
+    url: "../../../../assets/16.jpg",
+    music: "../../../../assets/songs/10.mp3",
   },
 
   {
     title: "Frank's Track",
-    url: "../../../assets/17.jpg",
-    music: "../../../assets/songs/11.mp3",
+    url: "../../../../assets/17.jpg",
+    music: "../../../../assets/songs/11.mp3",
   },
   {
     title: "No More Parties In LA",
-    url: "../../../assets/18.jpg",
-    music: "../../../assets/songs/12.mp3",
+    url: "../../../../assets/18.jpg",
+    music: "../../../../assets/songs/12.mp3",
   },
   {
     title: "Champion",
-    url: "../../../assets/19.png",
-    music: "../../../assets/songs/13.mp3",
+    url: "../../../../assets/19.png",
+    music: "../../../../assets/songs/13.mp3",
   },
   {
     title: "Once Upon A Time(Freestyle)",
-    url: "../../../assets/20.PNG",
-    music: "../../../assets/songs/14.mp3",
+    url: "../../../../assets/20.PNG",
+    music: "../../../../assets/songs/14.mp3",
   },
 ];
 
