@@ -1,8 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Navbar, Nav, Form, FormControl, Button, Image } from "react-bootstrap";
+import { Menu, Dropdown, message } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 const NavBar = () => {
+  
+  const history = useHistory();
+  const onClick = ({ key }) => {
+    if (`${key}` == 1) {
+      history.push('/')
+  }
+  };
+  const menu = (
+    <Menu onClick={onClick}>
+      
+        <Menu.Item key="1">Logout</Menu.Item>
+        
+    </Menu>
+  );
   return (
     <div>
       <Navbar bg="dark" variant="dark" className="bg-dark-sync">
@@ -26,7 +42,11 @@ const NavBar = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            signed in as, <a href="/">User Name</a>
+            signed in as, <Dropdown overlay={menu}>
+              <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                Username <DownOutlined />
+              </a>
+            </Dropdown>
           </Navbar.Text>
         </Navbar.Collapse>
       </Navbar>
