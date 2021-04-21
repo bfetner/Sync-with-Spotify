@@ -10,7 +10,6 @@ import NavBar from "./components/navbar";
 import Contactus from "./components/Contactus";
 import Aboutus from "./components/Aboutus";
 import axios from "axios";
-import Footer from "./components/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 
