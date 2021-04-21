@@ -16,6 +16,7 @@ import Create from "./Create";
 import Footer from "./Footer";
 
 const Home = (props) => {
+  
   {
     /* For creating rooms */
   }
@@ -55,12 +56,11 @@ const Home = (props) => {
   {
     /* For joining rooms */
   }
-  const joinRoom = () => {
-    var rooms = document.getElementById("rooms").value;
-    console.log("hi");
-    console.log(rooms);
-    const resultRoomGenre = "unknown";
-    const resultRoomName = "unknown";
+  
+  const joinRoom = (name,gen) => {
+   
+    const resultRoomGenre = gen;
+    const resultRoomName = name;
     props.history.push(
       "/Room/" +
         resultRoomGenre +
@@ -130,8 +130,7 @@ const Home = (props) => {
                       <Typography.Text
                         className="join_text"
                         style={{ float: "right" }}
-                        id="rooms"
-                        value={d.room_name}
+                      
                       >
                         {d.room_name}
                       </Typography.Text>
@@ -149,8 +148,8 @@ const Home = (props) => {
                     <Col xs={24}>
                       <Button
                         type="link"
-                        onClick={() => joinRoom()}
-                        style={{ float: "right" }}
+                        onClick={() => joinRoom(d.room_name,d.genre)}
+                        style={{ marginLeft: "250px"}}
                       >
                         Click to join
                       </Button>

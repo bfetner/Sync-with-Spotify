@@ -246,7 +246,7 @@ const Room = (props) => {
       <div class="main room-main">
         <strong style={{ fontSize: "xxx-large" }}>{roomName}</strong>
         <em>Room Genre: {roomGenre}</em>
-        <em>No of listeners in the room: {noOfUsers}</em>
+        <em>No of listeners : {noOfUsers}</em>
         <div class="grid1">
           <div class="queue1">
             {showQueue && (

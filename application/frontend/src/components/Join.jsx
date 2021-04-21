@@ -8,7 +8,7 @@ import Footer from "./Footer";
 
 
 
-const Join = () => {
+const Join = (props) => {
 
   const [searchValue, setSearchValue] = useState('')
   const [options, setOptions] = useState([])
@@ -77,6 +77,24 @@ const Join = () => {
       })
       .catch((er) => console.log(er));
   }
+
+  {
+    /* For joining rooms */
+  }
+  
+  const joinRoom = (name,gen) => {
+   
+    const resultRoomGenre = gen;
+    const resultRoomName = name;
+    props.history.push(
+      "/Room/" +
+        resultRoomGenre +
+        "/" +
+        resultRoomName +
+        "/" +
+        (Math.floor(Math.random() * 6) + 1)
+    );
+  };
   const searchRoom = () => {
         if(searchValue === '') return;
         let result = viewData.filter(d => d.room_name.toLowerCase().includes(searchValue.toLowerCase()))
@@ -170,7 +188,15 @@ const Join = () => {
                                     <Col xs={24} className="join_text">
                                     Genre:    <Typography.Text className="join_text" style={{float: "right"}} >{d.genre}</Typography.Text>                                        
                                     </Col>
-                                    
+                                    <Col xs={24}>
+                                        <Button
+                                            type="link"
+                                            onClick={() => joinRoom(d.room_name,d.genre)}
+                                            style={{ marginLeft: "250px"}}
+                                        >
+                                            Click to join
+                                        </Button>
+                                    </Col> 
                                 </Row>
                             </Card>
                         </Col>))}
@@ -213,7 +239,15 @@ const Join = () => {
                                     <Col xs={24} className="join_text">
                                     Genre:    <Typography.Text className="join_text"style={{float: "right"}} >{d.genre}</Typography.Text>                                        
                                     </Col>
-                                    
+                                    <Col xs={24}>
+                                        <Button
+                                            type="link"
+                                            onClick={() => joinRoom(d.room_name,d.genre)}
+                                            style={{ marginLeft: "250px"}}
+                                        >
+                                            Click to join
+                                        </Button>
+                                    </Col>
                                 </Row>
                             </Card>   
                         </Col>))}
