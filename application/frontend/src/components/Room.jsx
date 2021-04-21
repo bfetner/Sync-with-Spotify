@@ -150,6 +150,7 @@ const Room = (props) => {
   const roomName = props.match.params.roomName;
   const roomGenre = props.match.params.roomGenre;
   const roomAge = props.match.params.roomAge;
+  const noOfUsers = props.match.params.noOfUsers;
   const forceUpdate = useForceUpdate();
 
   const [songsForQueue, setSongsForQueue] = useState([
@@ -245,6 +246,7 @@ const Room = (props) => {
       <div class="main room-main">
         <strong style={{ fontSize: "xxx-large" }}>{roomName}</strong>
         <em>Room Genre: {roomGenre}</em>
+        <em>No of listeners in the room: {noOfUsers}</em>
         <div class="grid1">
           <div class="queue1">
             {showQueue && (

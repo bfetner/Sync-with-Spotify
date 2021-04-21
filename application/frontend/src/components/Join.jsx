@@ -3,6 +3,7 @@ import { Form, Input, Button, Checkbox, Row, Col,Card, Typography, AutoComplete,
 import Axios from "axios";
 import { DownOutlined } from '@ant-design/icons';
 import "../css/Join.css";
+import Footer from "./Footer";
 
 
 
@@ -221,7 +222,9 @@ const Join = () => {
 
                 </Col>
             </Row>
+            <Footer />
         </Fragment>
+        
     )
 }
 

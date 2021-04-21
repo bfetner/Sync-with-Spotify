@@ -22,6 +22,7 @@ import {
   Router,
   Redirect,
 } from "react-router-dom";
+import Footer from "./Footer";
 
 const albumList = [
   {
@@ -120,6 +121,7 @@ const Create = (props) => {
   const [roomGenre, setGenre] = useState();
   const [roomStatus, setRoomStatus] = useState(1);
   const [tosStatus, setTosStatus] = useState(false);
+  const [noOfUsers,setNoOfUsers]=useState();
 
   const insertData = (rn, rg) => {
     const roomId = Math.floor(Math.random() * 2000000000);
@@ -174,7 +176,7 @@ const Create = (props) => {
       console.log("handleOk");
 
       props.history.push(
-        "/Room/" + modalRoomGenre + "/" + modalRoomName + "/" + 0
+        "/Room/" + modalRoomGenre + "/" + modalRoomName + "/" + modalUsers + "/"+ 0
       );
     }
   };
@@ -185,14 +187,19 @@ const Create = (props) => {
   const [modalRoomGenre, setModalRoomGenre] = useState();
   const [modalRoomStatus, setModalRoomStatus] = useState();
   const [modalTosStatus, setModalTosStatus] = useState();
+  const [modalUsers,setModalUsers] =useState();
 
   const onClickFunks = () => {
     console.log("roomStatus");
     console.log(roomStatus);
+    let users = Math.floor(Math.random()*100)
+    setNoOfUsers(users);
     const clickRoomName = roomName;
     const clickRoomGenre = roomGenre;
     const clickRoomStatus = roomStatus;
     const clickTosStatus = tosStatus;
+    const clickUsers = noOfUsers;
+    setModalUsers(clickUsers);
     setModalRoomName(clickRoomName);
     setModalRoomGenre(clickRoomGenre);
     if (clickRoomStatus == 1) {
@@ -350,7 +357,9 @@ const Create = (props) => {
         <p>{successModalMessage}</p>
         <p style={{ color: "red" }}>{modalMessage}</p>
       </Modal>
+     
     </div>
+    
   );
 };
 

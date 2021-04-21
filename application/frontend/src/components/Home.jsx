@@ -13,6 +13,7 @@ import { Link, useHistory } from "react-router-dom";
 import Axios from "axios";
 import "../css/Home.css";
 import Create from "./Create";
+import Footer from "./Footer";
 
 const Home = (props) => {
   {
@@ -242,6 +243,7 @@ const Home = (props) => {
         </div>
       */}
       </div>
+      <Footer />
     </div>
   );
 };
