@@ -10,6 +10,7 @@ import NavBar from "./components/navbar";
 import Contactus from "./components/Contactus";
 import Aboutus from "./components/Aboutus";
 import axios from "axios";
+import Footer from "./components/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 
@@ -24,7 +25,7 @@ class App extends React.Component {
             <Route path="/Createpage" exact component={Createpage} />
             <Route path="/Join" exact component={Join} />
             <Route
-              path="/Room/:roomGenre/:roomName/:roomAge"
+              path="/Room/:roomGenre/:roomName/:numOfUsers/:roomAge"
               exact
               component={Room}
             />
