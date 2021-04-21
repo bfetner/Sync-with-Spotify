@@ -16,6 +16,7 @@ import { Header } from "antd/lib/layout/layout";
 import FAQ from "./FAQ";
 import "../css/Landing.css";
 import FaqComponent from "./FaqComponent";
+import Footer from "./Footer";
 
 const Landing = () => {
   return (
@@ -49,6 +50,7 @@ const Landing = () => {
         </figcaption>
       </figure>
       <FaqComponent />
+      <Footer />
     </div>
   );
 };
