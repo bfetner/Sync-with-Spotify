@@ -10,15 +10,6 @@ const Queue = (props) => {
   };
 
   const renderQueue = () => {
-    console.log("props.queueSongs.length");
-    console.log(props.queueSongs);
-    console.log(props.queueSongs.length);
-    if (props.queueSongs.length > 0) {
-      console.log(props.queueSongs[0].title);
-      console.log(props.queueSongs[0].url);
-      console.log(props.queueSongs[0].music);
-    }
-    console.log(props.queueSongs.length == 1);
     if (
       props.queueSongs.length == 0 ||
       (props.queueSongs.length == 1 &&

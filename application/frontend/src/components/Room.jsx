@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, Checkbox, Popover } from "antd";
 import Axios from "axios";
 import MusicPlayer from "./Roomcomponents/MusicPlayer.jsx";
 import Chat from "./Roomcomponents/Chat.jsx";
@@ -7,6 +7,7 @@ import Queue from "./Roomcomponents/Queue.jsx";
 import SongSearch from "./Roomcomponents/SongSearch.jsx";
 import "../css/Room.css";
 import { Redirect } from "react-router-dom";
+import { CopyFilled, UserOutlined } from "@ant-design/icons";
 
 {
   /*import albumCover from "./assets/image0.png";
@@ -148,11 +149,23 @@ const prepSongsForQueue = (song) => {
   };
 };
 
+const sharePopOver = (
+  <div>
+    <p>Room url copied to clipboard.</p>
+  </div>
+);
+
 const Room = (props) => {
   const roomName = props.match.params.roomName;
   const roomGenre = props.match.params.roomGenre;
   const roomAge = props.match.params.roomAge;
-  const noOfUsers = props.match.params.noOfUsers;
+  /* const noOfUsers = props.match.params.noOfUsers; */
+  const noOfUsers = Math.floor(Math.random() * 10 + 20);
+  console.log("props in Room");
+  console.log(props);
+  console.log(props.location.pathname);
+  console.log(window.location.href);
+  const roomUrl = window.location.href;
   const forceUpdate = useForceUpdate();
 
   const [songsForQueue, setSongsForQueue] = useState([
@@ -249,7 +262,6 @@ const Room = (props) => {
 
         const title = newSong.title;
         const prepNewSong = prepSongsForQueue(newSong);
-        prepNewSong.vote = 0;
         const modifyingQueue = songsForQueue;
         modifyingQueue.push(prepNewSong);
 
@@ -303,9 +315,6 @@ const Room = (props) => {
   return (
     <div>
       <div class="main room-main">
-        <strong style={{ fontSize: "xxx-large" }}>{roomName}</strong>
-        <em>Room Genre: {roomGenre}</em>
-        <em>No of listeners : {noOfUsers}</em>
         <div class="grid1">
           <div class="queue1">
             {showQueue && (
@@ -330,6 +339,31 @@ const Room = (props) => {
             </Button>
           </div>
           <div class="musicplayer">
+            <div className="room-info">
+              <strong style={{ fontSize: "xxx-large" }}>{roomName}</strong>
+              <em>Room Genre: {roomGenre}</em>
+              <div className="icon-row">
+                <div>
+                  <UserOutlined
+                    style={{ fontSize: "22pt", color: "var(--color3)" }}
+                  />{" "}
+                  {noOfUsers}
+                </div>
+                <Popover content={sharePopOver} trigger="click">
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(roomUrl);
+                    }}
+                    className="share-button"
+                  >
+                    <CopyFilled
+                      style={{ fontSize: "18pt", color: "var(--color3)" }}
+                    />
+                    <strong style={{ color: "var(--color3)" }}> Share</strong>
+                  </button>
+                </Popover>
+              </div>
+            </div>
             <MusicPlayer
               currentSong={songs}
               handleEndOfSong={handleEndOfSong}
