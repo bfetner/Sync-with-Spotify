@@ -48,7 +48,7 @@ const Footer = () => {
                                 <Link onClick={() => showModal()}>Terms of Service</Link>
                             </li>
                             <li>
-                                <Link to="">Privacy</Link>
+                                
                             </li>
                         </ul>
                     </div>
