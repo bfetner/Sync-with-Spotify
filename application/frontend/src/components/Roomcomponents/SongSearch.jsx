@@ -12,6 +12,7 @@ import {
   Card,
   Divider,
   Typography,
+  Popover,
 } from "antd";
 import Axios from "axios";
 import "../../css/SongSearch.css";
@@ -111,14 +112,18 @@ const SongSearch = (props) => {
               {searchedData &&
                 searchedData.map((d, index) => (
                   <div className="songsearch-result-card">
-                    <div className="songsearch-result-card-image-title">
+                    <Popover
+                      content={d.title}
+                      trigger="hover"
+                      className="songsearch-result-card-image-title"
+                    >
                       <img
                         alt="example"
                         src={d.url}
                         style={{ width: "50px" }}
                       />
                       <div> {d.title}</div>
-                    </div>
+                    </Popover>
                     <button
                       className="songsearch-add-icon-button"
                       onClick={() => handleAddClick(d.title)}
@@ -143,10 +148,14 @@ const SongSearch = (props) => {
         {viewData &&
           viewData.map((d, index) => (
             <div className="songsearch-result-card">
-              <div className="songsearch-result-card-image-title">
+              <Popover
+                content={d.title}
+                trigger="hover"
+                className="songsearch-result-card-image-title"
+              >
                 <img alt="example" src={d.url} style={{ width: "50px" }} />
                 <div> {d.title}</div>
-              </div>
+              </Popover>
               <button
                 className="songsearch-add-icon-button"
                 onClick={() => handleAddClick(d.title)}

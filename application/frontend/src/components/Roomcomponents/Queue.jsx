@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import { Form, Input, Button, Checkbox, Comment, List } from "antd";
+import { Form, Input, Button, Checkbox, Comment, List, Popover } from "antd";
 import Axios from "axios";
 import "../../css/Queue.css";
 
@@ -28,10 +28,14 @@ const Queue = (props) => {
         if (!(song.title == "0" && song.url == "0" && song.music == "0")) {
           return (
             <div class="songdiv">
-              <div className="songdiv-song-title">
+              <Popover
+                content={song.title}
+                trigger="hover"
+                className="songdiv-song-title"
+              >
                 <img className="songdiv-img" src={song.url} />
                 {song.title}
-              </div>
+              </Popover>
 
               <div className="song-vote-checkbox">
                 <div className="song-vote">{song.vote}</div>
