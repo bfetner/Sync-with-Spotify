@@ -1,19 +1,10 @@
 import React, {
-  Component,
   useState,
-  Box,
-  Flex,
-  ImageBackground,
-  View,
-  Text,
 } from "react";
-import { Form, Input, Checkbox, Modal, Button } from "antd";
+import {Modal } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import Axios from "axios";
 
-import Background from "../assets/bg.jpg";
-import { Header } from "antd/lib/layout/layout";
-import FAQ from "./FAQ";
 import "../css/Landing.css";
 import FaqComponent from "./FaqComponent";
 import Footer from "./Footer";
@@ -35,36 +26,36 @@ const Landing = () => {
   };
 
   return (
-    <div>
+    <div className="main-landing">
       <figure className="position-relative">
-        <img
-          src={Background}
-          alt="bg"
-          className="img-fluid"
-          style={{ filter: "brightness(30%)", width: "100%", height: "740px" }}
-        />
-        <figcaption className="logo">
-          <img src="../assets/logoImage2.png" style={{ width: "135px", marginRight: "10px" }}></img>
-        </figcaption>
-        <figcaption className="banner">Welcome to SYNC!</figcaption>
-        <figcaption className="subtext1">
-          Share your spotify songs in one of our listening rooms!
-          <br />
-          Listen to music and chat with friends and the community!
-        </figcaption>
+        <div className="logo-flex">
+          <figcaption className="logo">
+            <img src="../assets/logoImage2.png" style={{ width: "135px", marginRight: "10px" }}></img>
+          </figcaption>
+        </div>
+        <div className="fig-flex">
 
-        <figcaption className="landingButton">
-          <Link
+          <figcaption className="banner">Welcome to SYNC!</figcaption>
+          <figcaption className="subtext1">
+            Share your spotify songs in one of our listening rooms!
+          </figcaption>
+          <figcaption className="subtext2">
+            Listen to music and chat with friends and the community!
+          </figcaption>
 
-            class="btn btn-dark sync-button-color"
-            style={{ marginBottom: "30px", fontSize: '1.5rem' }}
-            size="lg"
-            onClick={() => showModal()}
-          >
-            Log in with Spotify
+          <figcaption className="landingButton">
+            <Link
+
+              class="btn btn-dark sync-button-color landingButton-text"
+              
+              size="lg"
+              onClick={() => showModal()}
+            >
+              Continue to SYNC
           </Link>
 
-        </figcaption>
+          </figcaption>
+        </div>
 
       </figure>
 
@@ -77,12 +68,6 @@ const Landing = () => {
         okText="Accept"
       >
         <ToS />
-        {/*<h3>Contact Us</h3>
-          <p>If you have any questions about these Terms and Conditions, You can contact us:
-                    </p>
-                    <p>By visiting this page on our website: <Link to='/Contact'>http://localhost:3000/Contact</Link></p>
-          */}
-
       </Modal>
       <FaqComponent />
       <Footer />

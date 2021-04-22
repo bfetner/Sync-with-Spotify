@@ -19,7 +19,7 @@ class App extends React.Component {
   render() {
     const PagesWithNavBar = () => {
       return (
-        <div styles={{ backgroundImage: BackgroundImage }}>
+        <div>
           <NavBar />
           <Switch>
             <Route path="/Home" exact component={Home} />
