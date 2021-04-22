@@ -92,6 +92,8 @@ const Join = (props) => {
         "/" +
         resultRoomName +
         "/" +
+        undefined +  
+        "/" +
         (Math.floor(Math.random() * 6) + 1)
     );
   };
@@ -103,6 +105,7 @@ const Join = (props) => {
 
   return (
     <Fragment>
+        <div>
             <Row>
                 <Col xs={24}>
                 <div class="main">
@@ -115,7 +118,7 @@ const Join = (props) => {
                     {options &&
                         <Row gutter={16} align='middle'>
                             <Col span={12} offset={6} >
-                                <div>
+                                <div >
                                 <AutoComplete
                                     style={{width: "40%" ,marginLeft:"300px"}} 
                                     onSearch={(value) => {
@@ -188,13 +191,22 @@ const Join = (props) => {
                                     <Col xs={24} className="join_text">
                                     Genre:    <Typography.Text className="join_text" style={{float: "right"}} >{d.genre}</Typography.Text>                                        
                                     </Col>
-                                    <Col xs={24}>
+                                    <Col xs={24} className="join_text">
+                                        No of members:
+                                        <Typography.Text
+                                            className="join_text"
+                                            style={{ float: "right" }}
+                                        >
+                                            {Math.floor(Math.random()*50)}
+                                        </Typography.Text>
+                                    </Col>
+                                    <Col xs={24} className="join_text">Link to join :
                                         <Button
                                             type="link"
                                             onClick={() => joinRoom(d.room_name,d.genre)}
-                                            style={{ marginLeft: "250px"}}
+                                            style={{ float: "right"}}
                                         >
-                                            Click to join
+                                            Click here
                                         </Button>
                                     </Col> 
                                 </Row>
@@ -239,13 +251,22 @@ const Join = (props) => {
                                     <Col xs={24} className="join_text">
                                     Genre:    <Typography.Text className="join_text"style={{float: "right"}} >{d.genre}</Typography.Text>                                        
                                     </Col>
-                                    <Col xs={24}>
+                                    <Col xs={24} className="join_text">
+                                        No of members:
+                                        <Typography.Text
+                                            className="join_text"
+                                            style={{ float: "right" }}
+                                        >
+                                            {Math.floor(Math.random()*50)}
+                                        </Typography.Text>
+                                    </Col>
+                                    <Col xs={24} className="join_text">Link to join:
                                         <Button
                                             type="link"
                                             onClick={() => joinRoom(d.room_name,d.genre)}
-                                            style={{ marginLeft: "250px"}}
+                                            style={{ float: "right"}}
                                         >
-                                            Click to join
+                                            Click here
                                         </Button>
                                     </Col>
                                 </Row>
@@ -256,7 +277,10 @@ const Join = (props) => {
 
                 </Col>
             </Row>
+            </div>
+            <div>
             <Footer />
+            </div>
         </Fragment>
         
     )
