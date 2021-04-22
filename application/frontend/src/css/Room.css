@@ -45,6 +45,12 @@
   background-color: var(--color2-brighter);
 }
 
+.share-popover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .queue1 {
   border-radius: 10px;
   width: 300px;

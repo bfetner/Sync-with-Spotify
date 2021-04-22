@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from "react";
-import { Form, Input, Button, Checkbox, Popover } from "antd";
+import React, { useState } from "react";
+import { Button, Popover } from "antd";
 import Axios from "axios";
 import MusicPlayer from "./Roomcomponents/MusicPlayer.jsx";
 import Chat from "./Roomcomponents/Chat.jsx";
@@ -149,12 +149,6 @@ const prepSongsForQueue = (song) => {
   };
 };
 
-const sharePopOver = (
-  <div>
-    <p>Room url copied to clipboard.</p>
-  </div>
-);
-
 const Room = (props) => {
   const roomName = props.match.params.roomName;
   const roomGenre = props.match.params.roomGenre;
@@ -273,6 +267,13 @@ const Room = (props) => {
 
   startingSongsForRoom();
 
+  const sharePopOver = (
+    <div className="share-popover">
+      <strong>Copy room link and share with friends:</strong>
+      <a href={roomUrl}>{roomUrl}</a>
+    </div>
+  );
+
   const handleEndOfSong = () => {
     var nextSong;
 
@@ -351,9 +352,9 @@ const Room = (props) => {
                 </div>
                 <Popover content={sharePopOver} trigger="click">
                   <button
-                    onClick={() => {
+                    /* onClick={() => {
                       navigator.clipboard.writeText(roomUrl);
-                    }}
+                    }} */
                     className="share-button"
                   >
                     <CopyFilled
