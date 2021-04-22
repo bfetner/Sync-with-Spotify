@@ -7,16 +7,16 @@ const Footer = () => {
         <div className="main-footer">
             <div className="container">
                 <div className="row">
-                    <div className="col">
-                        <h4>SYNC MUSIC STREAMING</h4>
+                    <div className="col" style={{paddingRight: '5rem'}}>
+                        <h4 style={{color: 'var(--color3)'}}>SYNC MUSIC STREAMING</h4>
                         <ul className="list-unstyled">
                             <li>111-111-1111</li>
                             <li>City, Country</li>
                             <li>Street Number Street Name</li>
                         </ul>
                     </div>
-                    <div className="col">
-                        <h4>CONTACT INFORMATION</h4>
+                    <div className="col" style={{paddingRight: '8rem'}}>
+                        <h4 style={{color: 'var(--color3)'}}>CONTACT INFORMATION</h4>
                         <ul className="list-unstyled">
                             <li>
                                 <Link to="/Contact">Contact Us</Link>
@@ -26,8 +26,8 @@ const Footer = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className="col">
-                        <h4>LEGAL</h4>
+                    <div className="col" >
+                        <h4 style={{color: 'var(--color3)'}}>LEGAL</h4>
                         <ul className="list-unstyled">
                             <li>
                                 <Link to="">Terms of Service</Link>
