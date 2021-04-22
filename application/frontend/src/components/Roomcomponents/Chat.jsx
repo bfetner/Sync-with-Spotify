@@ -161,6 +161,7 @@ const Chat = (props) => {
               }}
               className="chat-input"
               autoFocus
+              autoComplete="off"
             />
           </Form.Item>
 
