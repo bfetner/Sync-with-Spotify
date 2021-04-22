@@ -19,7 +19,7 @@ import Footer from "./Footer";
 
 const Createpage = (props) => {
   return (
-    <div className="createpage-flex">
+    <div className="createpage-flex text-color">
       <div className="createpage-top-text-block">Create your own room!</div>
       <div style={{ height: "calc(100vh - 424px)", minHeight: "500px" }}>
         <Create />

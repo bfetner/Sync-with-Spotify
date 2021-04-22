@@ -25,6 +25,23 @@ import {
 } from "react-router-dom";
 import Footer from "./Footer";
 
+const genreOptions = [
+  { label: "Pop", value: "Pop" },
+  { label: "Rock", value: "Rock" },
+  { label: "Hip Hop", value: "Hip Hop" },
+  { label: "Electronic", value: "Electronic" },
+  { label: "Soundtrack", value: "Soundtrack" },
+  { label: "Indie", value: "Indie" },
+  { label: "R&B", value: "R&B" },
+  { label: "K-Pop", value: "K-Pop" },
+  { label: "Lo-fi", value: "Lo-fi" },
+  { label: "Country", value: "Country" },
+  { label: "Latin", value: "Latin" },
+  { label: "Christian", value: "Christian" },
+  { label: "Jazz", value: "Jazz" },
+  { label: "Classical", value: "Classical" },
+];
+
 const albumList = [
   {
     title: "Pick Up Your Feelings",
@@ -122,7 +139,7 @@ const Create = (props) => {
   const [roomGenre, setGenre] = useState();
   const [roomStatus, setRoomStatus] = useState(1);
   const [tosStatus, setTosStatus] = useState(false);
-  const [noOfUsers,setNoOfUsers]=useState();
+  const [noOfUsers, setNoOfUsers] = useState();
 
   const insertData = (rn, rg) => {
     const roomId = Math.floor(Math.random() * 2000000000);
@@ -177,7 +194,14 @@ const Create = (props) => {
       console.log("handleOk");
 
       props.history.push(
-        "/Room/" + modalRoomGenre + "/" + modalRoomName + "/" + modalUsers + "/"+ 0
+        "/Room/" +
+          modalRoomGenre +
+          "/" +
+          modalRoomName +
+          "/" +
+          modalUsers +
+          "/" +
+          0
       );
     }
   };
@@ -186,15 +210,15 @@ const Create = (props) => {
   const history1 = useHistory();
 
   const showModal1 = () => {
-      setIsModalVisible1(true);
-    };
-  
-    const handleOk1 = () => {
-      setIsModalVisible1(false);
-    };
-    const handleCancel1 = () => {
-      setIsModalVisible1(false);
-    };
+    setIsModalVisible1(true);
+  };
+
+  const handleOk1 = () => {
+    setIsModalVisible1(false);
+  };
+  const handleCancel1 = () => {
+    setIsModalVisible1(false);
+  };
 
   const [modalMessage, setModalMessage] = useState();
   const [successModalMessage, setSuccessModalMessage] = useState();
@@ -202,12 +226,12 @@ const Create = (props) => {
   const [modalRoomGenre, setModalRoomGenre] = useState();
   const [modalRoomStatus, setModalRoomStatus] = useState();
   const [modalTosStatus, setModalTosStatus] = useState();
-  const [modalUsers,setModalUsers] =useState();
+  const [modalUsers, setModalUsers] = useState();
 
   const onClickFunks = () => {
     console.log("roomStatus");
     console.log(roomStatus);
-    let users = Math.floor(Math.random()*100)
+    let users = Math.floor(Math.random() * 100);
     setNoOfUsers(users);
     const clickRoomName = roomName;
     const clickRoomGenre = roomGenre;
@@ -303,14 +327,15 @@ const Create = (props) => {
         >
           <Select
             placeholder="Select genre"
+            options={genreOptions}
             onChange={(value) => {
               setGenre(value);
             }}
           >
-            <Option value="Rock">Rock</Option>
+            {/*             <Option value="Rock">Rock</Option>
             <Option value="Pop">Pop</Option>
             <Option value="Classical">Classical</Option>
-            <Option value="Country">Country</Option>
+            <Option value="Country">Country</Option> */}
           </Select>
         </Form.Item>
 
@@ -329,15 +354,18 @@ const Create = (props) => {
             </Radio>
           </Radio.Group>
         </Form.Item>
-          <Form.Item {...otherItemLayout} className="text-color">
-            <Checkbox
-              onChange={confirmTos}
-              required="required"
-              className="text-color"
-            >
-            </Checkbox>
-            &nbsp;&nbsp;Click here to accept our <a onClick={() => showModal1()} style={{color: 'var(--color3)'}}>Terms of Service</a>.
-          </Form.Item>
+        <Form.Item {...otherItemLayout} className="text-color">
+          <Checkbox
+            onChange={confirmTos}
+            required="required"
+            className="text-color"
+          ></Checkbox>
+          &nbsp;&nbsp;Click here to accept our{" "}
+          <a onClick={() => showModal1()} style={{ color: "var(--color3)" }}>
+            Terms of Service
+          </a>
+          .
+        </Form.Item>
         <Form.Item {...otherItemLayout} style={{ marginBottom: "0px" }}>
           <Button
             type="primary"
@@ -372,19 +400,31 @@ const Create = (props) => {
       </Modal>
 
       <Modal
-                title="Terms of Service" 
-                visible={isModalVisible1} 
-                onOk={handleOk1} 
-                onCancel={handleCancel1}
-                cancelButtonProps={{ style: { display: "none" } }}
-                okText="OK"
-                >
-                    <p>Information you provide to us about yourself, or that we collect and infer based upon your entries and posts to <strong>Sync</strong>  may be used to improve your user experience, provide or suggest targeted services and to allow third party advertises and messaging to be tailored or targeted. We may use or provide to third parties aggregated data entered by users or inferred from usage. We may collect IP addresses and cookies for the primary purpose of assisting with ease of use by you. However, except as legally required, we will not sell or provide your email address, IP address, cookies, address or phone number to third parties for advertising or other purposes. In the future we may provide third parties with the ability to provide customizable or targeted advertising or messages and in such cases we may allow third party applications to access your user data in determining the messaging or advertising applicable to you. 
-            </p>
-                </Modal>
-     
+        title="Terms of Service"
+        visible={isModalVisible1}
+        onOk={handleOk1}
+        onCancel={handleCancel1}
+        cancelButtonProps={{ style: { display: "none" } }}
+        okText="OK"
+      >
+        <p>
+          Information you provide to us about yourself, or that we collect and
+          infer based upon your entries and posts to <strong>Sync</strong> may
+          be used to improve your user experience, provide or suggest targeted
+          services and to allow third party advertises and messaging to be
+          tailored or targeted. We may use or provide to third parties
+          aggregated data entered by users or inferred from usage. We may
+          collect IP addresses and cookies for the primary purpose of assisting
+          with ease of use by you. However, except as legally required, we will
+          not sell or provide your email address, IP address, cookies, address
+          or phone number to third parties for advertising or other purposes. In
+          the future we may provide third parties with the ability to provide
+          customizable or targeted advertising or messages and in such cases we
+          may allow third party applications to access your user data in
+          determining the messaging or advertising applicable to you.
+        </p>
+      </Modal>
     </div>
-    
   );
 };
 
