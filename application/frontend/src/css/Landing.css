@@ -1,7 +1,7 @@
 .main-landing {
     background-image: url(../assets/bg30brightcrop2.jpg);
     background-position: top;
-    background-size: 768px;
+    background-size: 981px;
     background-repeat: no-repeat;
 }
 
@@ -51,11 +51,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 397px;
+    height: 507px;
     justify-content: flex-start;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 981px) {
     .main-landing {
         background-image: url(../assets/bg30brightcrop2.jpg);
         background-position: top;
