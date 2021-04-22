@@ -28,7 +28,7 @@ const Aboutus = () => {
             <Card.Text>Hi, I am Rebecca!</Card.Text>
             <Button
               variant="primary"
-              href=""
+              href="https://github.com/rezum"
               style={{ backgroundColor: "#00adb5" }}
             >
               Go to Rebeccas's github
@@ -46,7 +46,7 @@ const Aboutus = () => {
             <Card.Text>Hi, I am Bryan!</Card.Text>
             <Button
               variant="primary"
-              href=""
+              href="https://github.com/bfetner"
               style={{ backgroundColor: "#00adb5" }}
             >
               Go to Bryan's github
@@ -64,7 +64,7 @@ const Aboutus = () => {
             <Card.Text>Hi, I am Ashwini!</Card.Text>
             <Button
               variant="primary"
-              href=""
+              href="https://github.com/Ashwinigm"
               style={{ backgroundColor: "#00adb5" }}
             >
               Go to Ashwini's github
@@ -103,7 +103,7 @@ const Aboutus = () => {
             <Card.Text>Hi, I am Hirva!</Card.Text>
             <Button
               variant="primary"
-              href=""
+              href="https://github.com/Hirva98"
               style={{ backgroundColor: "#00adb5" }}
             >
               Go to Hirva's github
@@ -121,7 +121,7 @@ const Aboutus = () => {
             <Card.Text>Hi, I am Luong!</Card.Text>
             <Button
               variant="primary"
-              href=""
+              href="https://github.com/luongdang0701"
               style={{ backgroundColor: "#00adb5" }}
             >
               Go to Luong's github
@@ -139,7 +139,7 @@ const Aboutus = () => {
             <Card.Text>Hi, I am Vishakha!</Card.Text>
             <Button
               variant="primary"
-              href=""
+              href="https://github.com/Vishakha2002"
               style={{ backgroundColor: "#00adb5" }}
             >
               Go to Vishakha's github
