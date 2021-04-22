@@ -507,7 +507,6 @@ const Create = (props) => {
                     </p>
                   </p>
                 </Modal>
-     
     </div>
   );
 };
