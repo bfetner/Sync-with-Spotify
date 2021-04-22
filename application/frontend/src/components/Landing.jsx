@@ -1,10 +1,18 @@
 import React, {
+  Component,
   useState,
+  Box,
+  Flex,
+  ImageBackground,
+  View,
+  Text,
 } from "react";
-import {Modal } from "antd";
+import { Form, Input, Checkbox, Modal, Button } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import Axios from "axios";
 
+import { Header } from "antd/lib/layout/layout";
+import FAQ from "./FAQ";
 import "../css/Landing.css";
 import FaqComponent from "./FaqComponent";
 import Footer from "./Footer";
