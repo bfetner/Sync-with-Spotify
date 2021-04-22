@@ -46,7 +46,7 @@ const Landing = () => {
         <figcaption className="logo">
           <img src="../assets/logoImage2.png" style={{ width: "135px", marginRight: "10px" }}></img>
         </figcaption>
-        <figcaption className="banner">Welcome to Sync!</figcaption>
+        <figcaption className="banner">Welcome to SYNC!</figcaption>
         <figcaption className="subtext1">
           Share your spotify songs in one of our listening rooms!
           <br />

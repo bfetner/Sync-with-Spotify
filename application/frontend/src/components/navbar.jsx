@@ -30,7 +30,7 @@ const NavBar = () => {
             href="/Home"
             style={{ width: "65px", marginRight: "10px" }}
           />
-          Sync
+          SYNC
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/Createpage">Create</Nav.Link>
