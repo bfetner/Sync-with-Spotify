@@ -13,12 +13,13 @@ import axios from "axios";
 import Footer from "./components/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
+import BackgroundImage from "./assets/bgimages/test.png";
 
 class App extends React.Component {
   render() {
     const PagesWithNavBar = () => {
       return (
-        <div>
+        <div styles={{ backgroundImage: BackgroundImage }}>
           <NavBar />
           <Switch>
             <Route path="/Home" exact component={Home} />

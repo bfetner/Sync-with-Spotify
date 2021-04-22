@@ -10,6 +10,28 @@ const Queue = (props) => {
   };
 
   const renderQueue = () => {
+    console.log("props.queueSongs.length");
+    console.log(props.queueSongs);
+    console.log(props.queueSongs.length);
+    if (props.queueSongs.length > 0) {
+      console.log(props.queueSongs[0].title);
+      console.log(props.queueSongs[0].url);
+      console.log(props.queueSongs[0].music);
+    }
+    console.log(props.queueSongs.length == 1);
+    if (
+      props.queueSongs.length == 0 ||
+      (props.queueSongs.length == 1 &&
+        props.queueSongs[0].title == "0" &&
+        props.queueSongs[0].url == "0" &&
+        props.queueSongs[0].music == "0")
+    ) {
+      return (
+        <div class="queue-says">
+          <em>Click on "Search for a Song" to add a song to the queue!</em>
+        </div>
+      );
+    }
     if (props.queueSongs) {
       return props.queueSongs.map((song) => {
         if (!(song.title == "0" && song.url == "0" && song.music == "0")) {
