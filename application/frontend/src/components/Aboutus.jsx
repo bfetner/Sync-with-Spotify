@@ -15,7 +15,7 @@ import Malcolm from "../assets/profile pics/malcolm.png";
 const Aboutus = () => {
   return (
     <div class="main">
-      <h2 style={{ padding: "35px" }}>The Creators! </h2>
+      <p style={{ padding: "30px", fontSize: "65px" }}>The Creators! </p>
       <CardDeck style={{ justifySelf: "center" }}>
         <Card style={{ maxWidth: 400, backgroundColor: "#393e46" }}>
           <Card.Img variant="top" src={Rebecca} />

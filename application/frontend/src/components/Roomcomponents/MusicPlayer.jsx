@@ -47,7 +47,9 @@ function MusicPlayer(props) {
         src={props.currentSong.songImageUrl}
         style={{ width: "300px", height: "300px" }}
       />
+      <p style={{fontSize: "18px", paddingTop: "5px"}}>
       <strong>{props.currentSong.songName}</strong>
+      </p>
       {/* <p>{props.currentSong.artist}</p> */}
       <audio
         src={props.currentSong.songUrl}
