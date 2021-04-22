@@ -9,6 +9,7 @@ import {
   message,
   Select,
   Radio,
+  Col,
 } from "antd";
 import Axios from "axios";
 import "../css/Create.css";
@@ -181,6 +182,20 @@ const Create = (props) => {
     }
   };
 
+  const [isModalVisible1, setIsModalVisible1] = useState(false);
+  const history1 = useHistory();
+
+  const showModal1 = () => {
+      setIsModalVisible1(true);
+    };
+  
+    const handleOk1 = () => {
+      setIsModalVisible1(false);
+    };
+    const handleCancel1 = () => {
+      setIsModalVisible1(false);
+    };
+
   const [modalMessage, setModalMessage] = useState();
   const [successModalMessage, setSuccessModalMessage] = useState();
   const [modalRoomName, setModalRoomName] = useState();
@@ -314,17 +329,15 @@ const Create = (props) => {
             </Radio>
           </Radio.Group>
         </Form.Item>
-
-        <Form.Item {...otherItemLayout}>
-          <Checkbox
-            onChange={confirmTos}
-            required="required"
-            className="text-color"
-          >
-            Click here to accept our Terms of Service.
-          </Checkbox>
-        </Form.Item>
-
+          <Form.Item {...otherItemLayout} className="text-color">
+            <Checkbox
+              onChange={confirmTos}
+              required="required"
+              className="text-color"
+            >
+            </Checkbox>
+            &nbsp;&nbsp;Click here to accept our <a onClick={() => showModal1()} style={{color: 'var(--color3)'}}>Terms of Service</a>.
+          </Form.Item>
         <Form.Item {...otherItemLayout} style={{ marginBottom: "0px" }}>
           <Button
             type="primary"
@@ -357,6 +370,18 @@ const Create = (props) => {
         <p>{successModalMessage}</p>
         <p style={{ color: "red" }}>{modalMessage}</p>
       </Modal>
+
+      <Modal
+                title="Terms of Service" 
+                visible={isModalVisible1} 
+                onOk={handleOk1} 
+                onCancel={handleCancel1}
+                cancelButtonProps={{ style: { display: "none" } }}
+                okText="OK"
+                >
+                    <p>Information you provide to us about yourself, or that we collect and infer based upon your entries and posts to <strong>Sync</strong>  may be used to improve your user experience, provide or suggest targeted services and to allow third party advertises and messaging to be tailored or targeted. We may use or provide to third parties aggregated data entered by users or inferred from usage. We may collect IP addresses and cookies for the primary purpose of assisting with ease of use by you. However, except as legally required, we will not sell or provide your email address, IP address, cookies, address or phone number to third parties for advertising or other purposes. In the future we may provide third parties with the ability to provide customizable or targeted advertising or messages and in such cases we may allow third party applications to access your user data in determining the messaging or advertising applicable to you. 
+            </p>
+                </Modal>
      
     </div>
     
