@@ -34,9 +34,6 @@ const Footer = () => {
                         <h4 style={{ color: 'var(--color3)' }}>CONTACT INFORMATION</h4>
                         <ul className="list-unstyled">
                             <li>
-                                <Link to="/Contact">Contact Us</Link>
-                            </li>
-                            <li>
                                 <Link to="/Aboutus">The Creators</Link>
                             </li>
                         </ul>
