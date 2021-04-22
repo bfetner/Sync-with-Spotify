@@ -17,7 +17,7 @@ const Chat = (props) => {
   const [intervaled, setIntervaled] = useState(false);
   const forceUpdate = useForceUpdate();
 
-  const currentUser = "User Name";
+  const currentUser = "Username";
 
   const userList = [
     "Rebecca",
