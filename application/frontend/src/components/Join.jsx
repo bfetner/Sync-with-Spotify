@@ -113,14 +113,10 @@ const Join = (props) => {
                 </div>
                 </Col>
             </Row>
-            <Row style={{margin: "25px 0"}}>
-                <Col xs={24}>
                     {options &&
-                        <Row gutter={16} align='middle'>
-                            <Col span={12} offset={6} >
-                                <div >
+                                <div className="search_bar">
                                 <AutoComplete
-                                    style={{width: "40%" ,marginLeft:"300px"}} 
+                                    style={{width: "20%" }} 
                                     onSearch={(value) => {
                                         setSearchValue(value)
                                         console.log(value)
@@ -146,19 +142,16 @@ const Join = (props) => {
                                 </AutoComplete>        
                                 <Dropdown 
                                 overlay={menu} 
-                                overlayClassName ="join_dropdown"
+                                
                                 >
-                                    <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                                    <Button type="primary" className="ant-dropdown-link dropdown_button" onClick={e => e.preventDefault()}>
                                     Search <DownOutlined />
-                                    </a>
+                                    </Button>
                                 </Dropdown>  
                                 </div>              
-                            </Col>
-                            
-                        </Row>
+                           
                     }
-                </Col>
-            </Row>
+               
             {searchedData && searchedData.length > 0 && (
                 <div>
                 <Row>
