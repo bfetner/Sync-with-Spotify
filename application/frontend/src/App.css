@@ -12,7 +12,11 @@
 
 body {
   background-color: var(--color1) !important;
-  color: var(--color4) !important;
+  /* background-image: url(./assets/bgimages/test.png);
+  background-position: center;
+  background-size: 100vw;
+  color: var(--color4) !important; */
+  /* background-image: linear-gradient(var(--color1), black, var(--color1)); */
 }
 
 /*.old_body {

@@ -137,9 +137,11 @@ const prepSongsForQueue = (song) => {
   let numOfVotes = Math.floor(Math.random() * 20);
   let title = song.title;
   let url = song.url;
+  let music = song.music;
   return {
     title: title,
     url: url,
+    music: music,
     vote: numOfVotes,
     queueSongId: queueSongId,
     userVote: false,
