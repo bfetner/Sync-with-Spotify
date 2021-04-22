@@ -67,6 +67,8 @@ const Home = (props) => {
         "/" +
         resultRoomName +
         "/" +
+        undefined +  
+        "/" +
         (Math.floor(Math.random() * 6) + 1)
     );
   };
