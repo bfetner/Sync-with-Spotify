@@ -4,10 +4,6 @@ import Axios from "axios";
 import "../../css/Queue.css";
 
 const Queue = (props) => {
-  console.log("Queue start");
-  console.log(props);
-  console.log("Queue end");
-
   const handleCheck = (e) => {
     console.log(e.target.id);
     props.updateQueueVote(e.target.id);

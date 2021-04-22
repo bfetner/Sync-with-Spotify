@@ -162,7 +162,7 @@ const Room = (props) => {
   ]);
 
   const [currentSong, setCurrentSong] = useState(
-    albumList[Math.floor(Math.random() * 19)]
+    albumList[Math.floor(Math.random() * albumList.length)]
   );
 
   const [songs, setSongs] = useState({
@@ -193,8 +193,6 @@ const Room = (props) => {
       return obj.queueSongId === incomingQueueSongId;
     });
     if (findQueueSong[0]) {
-      console.log(incomingQueueSongId);
-      console.log(findQueueSong[0].vote);
       if (!findQueueSong[0].userVote) {
         findQueueSong[0].vote = findQueueSong[0].vote + 1;
         findQueueSong[0].userVote = true;
@@ -202,8 +200,6 @@ const Room = (props) => {
         findQueueSong[0].vote = findQueueSong[0].vote - 1;
         findQueueSong[0].userVote = false;
       }
-      console.log(incomingQueueSongId);
-      console.log(findQueueSong[0].vote);
     }
     setSongsForQueue(modifyingQueue);
     forceUpdate();
@@ -218,6 +214,28 @@ const Room = (props) => {
     const modifyingQueue = songsForQueue;
     modifyingQueue.push(prepNewSong);
     switchQueueSearchsong();
+  };
+
+  const removeSongFromQueue = (queueSong) => {
+    const queueArray = songsForQueue;
+    var index = -1;
+    for (var i = 0; i < queueArray.length; i++) {
+      if (queueArray[i].queueSongId == queueSong.queueSongId) {
+        console.log(
+          "queueArray[" +
+            i +
+            "].queueSongId: " +
+            queueArray[i].queueSongId +
+            ", queueSong.queueSongId: " +
+            queueSong.queueSongId
+        );
+        index = i;
+      }
+    }
+    if (index !== -1) {
+      queueArray.splice(index, 1);
+      setSongsForQueue(queueArray);
+    }
   };
 
   const [roomIsSet, setRoomIsSet] = useState(false);
@@ -240,6 +258,45 @@ const Room = (props) => {
   };
 
   startingSongsForRoom();
+
+  const handleEndOfSong = () => {
+    var nextSong;
+
+    if (songsForQueue.length > 0) {
+      for (var i = 0; i < songsForQueue.length; i++) {
+        const currentSong = songsForQueue[i];
+        if (
+          !(
+            currentSong.title == "0" &&
+            currentSong.url == "0" &&
+            currentSong.music == "0"
+          )
+        ) {
+          if (!nextSong) {
+            nextSong = currentSong;
+          } else {
+            if (currentSong.vote > nextSong.vote) {
+              nextSong = currentSong;
+            }
+          }
+        }
+      }
+    }
+
+    if (!nextSong) {
+      nextSong = albumList[Math.floor(Math.random() * 19)];
+    }
+    setSongs({
+      song_id: "1",
+      songName: nextSong.title,
+      artist: "unknown",
+      songUrl: nextSong.music,
+      songImageUrl: nextSong.url,
+    });
+    removeSongFromQueue(nextSong);
+    console.log("songsForQueue");
+    console.log(songsForQueue);
+  };
 
   return (
     <div>
@@ -270,11 +327,11 @@ const Room = (props) => {
               {displayTypeSwitchButton}
             </Button>
           </div>
-          <div
-            class="musicplayer"
-            style={{ alignSelf: "center", justifySelf: "center" }}
-          >
-            <MusicPlayer currentSong={songs} />
+          <div class="musicplayer">
+            <MusicPlayer
+              currentSong={songs}
+              handleEndOfSong={handleEndOfSong}
+            />
           </div>
           <div class="chatflex">
             <Chat roomName={roomName} />

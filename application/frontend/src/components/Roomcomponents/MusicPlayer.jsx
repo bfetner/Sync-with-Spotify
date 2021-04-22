@@ -1,14 +1,25 @@
 import React, { useState, useRef, useEffect } from "react";
+import "../../css/MusicPlayer.css";
+
+const useForceUpdate = () => {
+  const [_, setState] = useState(false);
+  return () => setState((val) => !val);
+};
 
 function MusicPlayer(props) {
+  const forceUpdate = useForceUpdate();
   console.log(props);
   const audioEl = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [buttonImage, setButtonImage] = useState("../../assets/pause.png");
+  const [buttonImage, setButtonImage] = useState(
+    "../../../../assets/pause.png"
+  );
+  const [volume, setVolume] = useState(0.25);
 
   useEffect(() => {
     if (isPlaying) {
       audioEl.current.play();
+      audioEl.current.volume = volume;
     } else {
       audioEl.current.pause();
     }
@@ -17,39 +28,34 @@ function MusicPlayer(props) {
   const buttonControl = () => {
     if (isPlaying) {
       setIsPlaying(false);
-      setButtonImage("../../assets/play.png");
+      setButtonImage("../../../../assets/play.png");
     } else {
       setIsPlaying(true);
-      setButtonImage("../../assets/pause.png");
+      setButtonImage("../../../../assets/pause.png");
     }
   };
 
+  const handleEnd = () => {
+    props.handleEndOfSong();
+    console.log("props.currentSong.songUrl");
+    console.log(props.currentSong.songUrl);
+  };
+
   return (
-    <div className="music-player" style={{ alignSelf: "center" }}>
-      <audio src={props.currentSong.songUrl} ref={audioEl}></audio>
+    <div className="music-player">
       <img
         src={props.currentSong.songImageUrl}
         style={{ width: "300px", height: "300px" }}
       />
-      <p>{props.currentSong.songName}</p>
-      <p>{props.currentSong.artist}</p>
-      <button
-        style={{
-          padding: "0",
-          border: "none",
-          background: "none",
-        }}
-        onClick={buttonControl}
-      >
-        <img
-          src={buttonImage}
-          style={{
-            width: "50px",
-            height: "50px",
-            filter: "invert(70%)",
-          }}
-        />
-      </button>
+      <strong>{props.currentSong.songName}</strong>
+      {/* <p>{props.currentSong.artist}</p> */}
+      <audio
+        src={props.currentSong.songUrl}
+        ref={audioEl}
+        controls
+        /* autoPlay */
+        onEnded={handleEnd}
+      ></audio>
     </div>
   );
 }
