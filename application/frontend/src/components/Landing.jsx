@@ -63,7 +63,7 @@ const Landing = () => {
             Log in with Spotify
           </Link>
           
-  </figcaption>
+        </figcaption>
        
       </figure> 
       
