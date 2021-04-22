@@ -51,6 +51,7 @@
 .songdiv-song-title {
   width: 195px;
   overflow: hidden;
+  white-space: nowrap;
   height: 50px;
   background-color: var(--color1);
   padding-right: 10px;
