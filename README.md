@@ -2,7 +2,7 @@
 
 ## Please when ready add your teams application URL or IP to the repository description. This will help with grading. Teams are expected to keep this value up to date.
 
-url: http://18.218.242.136:8000/ 
+url: http://3.17.66.0:3000/
 
 ## Please do the following steps before completing Milestone 0.
 1. Change the name of the repository. All that needs to change is the NN to your respective team number. Team numbers whose value is less than 10, please pad with a 0. Ex team 1 is Team01 team 11 is Team11. Please make sure to also remove the username from the repository as well. Teams with incorrectly name repository will have points deducted from their milestone 0 grades.
@@ -18,10 +18,10 @@ url: http://18.218.242.136:8000/
 | Student Name | Student Email | GitHub Username | Role |
 |    :---:     |     :---:     |     :---:       |   :---:   |
 | Rebecca Zumaeta      |  rzumaeta@mail.sfsu.edu         |     rezum            | Team Lead|
-| Luong Dang    |  ldang2@mail.sfsu.edu           |     luongdang0701         | Back-End Lead |
+| Ashwini Managuli      |  amanaguli@mail.sfsu.edu        |     Ashwinigm            | Back-End Lead|
 | Bryan Fetner      |  bfetner@mail.sfsu.edu          |     bfetner            | Front-End Lead |
+| Luong Dang    |  ldang2@mail.sfsu.edu           |     luongdang0701         | Back-End developer |
 | Vishakha Tyagi      |  vtyagi@mail.sfsu.edu           |     Vishakha2002            | Back-End developer |
-| Ashwini Managuli      |  amanaguli@mail.sfsu.edu        |     Ashwinigm            | Back-End developer |
 | Malcolm Angelo De Villar      |  mdevillar@mail.sfsu.edu        |     mdevillar0            | Front-End developer |
 | Hirva Patel | hpatel11@mail.sfsu.edu | hirva98 | Front-End developer |
 
