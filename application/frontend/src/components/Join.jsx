@@ -151,7 +151,7 @@ const Join = (props) => {
 
                 setSearchedData(result);
               }}
-              notFoundContent="Sorry, the room with this name or genre was not found..."
+              /* notFoundContent="Sorry, the room with this name or genre was not found..." */
               options={options}
               placeholder={searchBarText.textField}
               filterOption={(inputValue, option) =>
