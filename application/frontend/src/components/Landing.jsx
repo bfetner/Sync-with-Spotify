@@ -33,7 +33,7 @@ const Landing = () => {
   };
 
   const handleOk = () => {
-    history.push('/Home')
+    history.push('/Login')
   };
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -77,7 +77,7 @@ const Landing = () => {
       setModalMessage("You must accept the terms for service.");
       showErrorModal();
     } else {
-      history.push('/Home')
+      history.push('/Login')
     }
   }
 
@@ -107,7 +107,7 @@ return (
             size="lg"
             onClick={() => onClickFunks()}
           >
-            Continue to SYNC
+            Login with Spotify!
           </Link>
 
         </figcaption>

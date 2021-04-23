@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Navbar, Nav, Form, FormControl, Button, Image } from "react-bootstrap";
 import { Menu, Dropdown, message } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import Cookies from "js-cookie";
 
 const NavBar = () => {
   
@@ -15,7 +16,9 @@ const NavBar = () => {
   const menu = (
     <Menu onClick={onClick}>
       
-        <Menu.Item key="1">Logout</Menu.Item>
+        <Menu.Item key="1" onClick={
+          (Cookies.remove("spotifyAuthToken" , "username"))
+        }>Logout</Menu.Item>
         
     </Menu>
   );
@@ -44,7 +47,7 @@ const NavBar = () => {
           <Navbar.Text>
             signed in as, <Dropdown overlay={menu}>
               <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                Username <DownOutlined />
+              {Cookies.get("username")}<DownOutlined />
               </a>
             </Dropdown>
           </Navbar.Text>

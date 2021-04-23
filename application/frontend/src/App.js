@@ -15,6 +15,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import BackgroundImage from "./assets/bgimages/test.png";
 
+import Login from "./components/Login";
+
 class App extends React.Component {
   render() {
     const PagesWithNavBar = () => {
@@ -32,6 +34,7 @@ class App extends React.Component {
             />
             <Route path="/Contact" exact component={Contactus}></Route>
             <Route path="/Aboutus" exact component={Aboutus}></Route>
+            <Route path="/Login" exact component={Login}></Route>
           </Switch>
         </div>
       );
