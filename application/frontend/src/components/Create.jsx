@@ -355,7 +355,7 @@ const Create = (props) => {
             </Radio>
           </Radio.Group>
         </Form.Item>
-        <Form.Item {...otherItemLayout} className="text-color">
+        {/*<Form.Item {...otherItemLayout} className="text-color">
           <Checkbox
             onChange={confirmTos}
             required="required"
@@ -366,7 +366,7 @@ const Create = (props) => {
             Terms of Service
           </a>
           .
-        </Form.Item>
+          </Form.Item>*/}
         <Form.Item {...otherItemLayout} style={{ marginBottom: "0px" }}>
           <Button
             type="primary"
