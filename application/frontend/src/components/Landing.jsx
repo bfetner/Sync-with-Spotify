@@ -77,7 +77,7 @@ const Landing = () => {
       setModalMessage("You must accept the terms for service.");
       showErrorModal();
     } else {
-      history.push('/Login')
+      history.push('/Home')
     }
   }
 
