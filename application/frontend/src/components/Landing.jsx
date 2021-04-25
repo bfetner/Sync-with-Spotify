@@ -111,6 +111,7 @@ return (
           </Link>
 
         </figcaption>
+        
         <Form>
             <Form.Item className="text-color">
               <Checkbox
