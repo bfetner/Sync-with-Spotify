@@ -141,7 +141,6 @@ const Landing = () => {
                   {(user, loading, error) =>
                     user && user.data ? (
                       <>
-                        
                         <MDBCol
                           style={{
                             maxWidth: "22rem",
@@ -204,13 +203,13 @@ const Landing = () => {
                           </MDBCard>
                         </MDBCol>
                         <>
-                    {Cookies.set("username", user.data.display_name)}
-                    </>
+                          {Cookies.set("username", user.data.display_name)}
+                          {Cookies.set("PlayerToken", spotifyAuthToken)}
+                        </>
                       </>
                     ) : (
                       <h1>loading..</h1>
                     )
-                    
                   }
                 </User>
                 <div style={{ width: "100%" }}>
@@ -255,17 +254,17 @@ const Landing = () => {
                       Scopes.userReadPrivate,
                       Scopes.userReadEmail,
                       "user-top-read",
-                      'user-read-recently-played'
+                      "user-read-recently-played",
                     ]}
                     title={"Login with Spotify!"}
                     showDialog={true}
                   />
                 </div>
               </figcaption>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
+              <br />
+              <br />
+              <br />
+              <br />
               <FaqComponent />
               <Footer />
             </>
