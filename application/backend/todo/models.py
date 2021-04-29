@@ -16,9 +16,19 @@ class Rooms(models.Model):
     room_name = models.CharField(max_length=255)
     genre = models.CharField(max_length=255)
     roomImageUrl = models.CharField(max_length=255,null=True)
+    roomTypePublic = models.BooleanField(default=False)
 
-    def str(self):
+    def _str_(self):
         return self.room_name
+
+class Vote(models.Model):                      # number of user_id gives us the count
+    user_id = models.CharField(max_length=255) #turn this into foreign key when we create user table
+    vote_id = models.CharField(max_length=255)
+    room_id = models.ForeignKey(Rooms, on_delete=models.CASCADE)
+
+class Participants(models.Model):
+    room_id = models.ForeignKey(Rooms, on_delete=models.CASCADE)
+    user_id = models.CharField(max_length=255)
 
 # class UserAccountManager(BaseUserManager):
 #     def create_user(self, email, password=None, **extra_fields):
