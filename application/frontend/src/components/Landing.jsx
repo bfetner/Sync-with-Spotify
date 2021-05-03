@@ -46,6 +46,31 @@ const Landing = (props) => {
     /* console.log(Scopes.all); */
   }, [Cookies.get("spotifyAuthToken")]);
 
+  const handleTokenRetrieval = (token) => {
+    Axios.get("https://api.spotify.com/v1/me", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => {
+        userInfo.userId = res.data.id;
+        userInfo.displayName = res.data.display_name;
+        if (res.data.images.length !== 0) {
+          userInfo.profilePictureUrl = res.data.images[0].url;
+        }
+        userInfo.administratorStatus = false;
+        userInfo.spotifyToken = token;
+        userInfo.product = res.data.product;
+        updateCurrentUser(userInfo);
+        history.push("/Home");
+      })
+      .catch((er) => {
+        console.log(er);
+      });
+  };
+
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -114,7 +139,8 @@ const Landing = (props) => {
   return (
     <div className="main-landing">
       <SpotifyAuthListener
-        onAccessToken={(token) => {
+      /* onAccessToken={(token) => {
+          console.log("SpotifyAuthListener");
           Axios.get("https://api.spotify.com/v1/me", {
             headers: {
               Accept: "application/json",
@@ -134,7 +160,7 @@ const Landing = (props) => {
             .catch((er) => {
               console.log(er);
             });
-        }}
+        }} */
       />
       <figure className="position-relative">
         <div className="logo-flex">
@@ -149,9 +175,14 @@ const Landing = (props) => {
         {Cookies.get("spotifyAuthToken") ? (
           <SpotifyApiContext.Provider value={spotifyAuthToken}>
             <div className="fig-flex">
+              {handleTokenRetrieval(spotifyAuthToken)}
               <User>
                 {(user, loading, error) =>
-                  user && user.data ? <div>Got it!</div> : <div>Loading...</div>
+                  user && user.data ? (
+                    <div>{spotifyAuthToken}</div>
+                  ) : (
+                    <div>Loading...</div>
+                  )
                 }
               </User>
             </div>

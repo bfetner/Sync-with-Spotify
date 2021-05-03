@@ -3,7 +3,8 @@ var UserInfo = {
   displayName: "",
   profilePictureUrl: "",
   administratorStatus: "",
-  spotifyToken: ""
+  spotifyToken: "",
+  product: ""
 }
 
 export default UserInfo;

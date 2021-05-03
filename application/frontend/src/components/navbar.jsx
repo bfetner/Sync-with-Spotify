@@ -33,6 +33,9 @@ const NavBar = (props) => {
 
   const [userInfo, setUserInfo] = useState(retrieveCurrentUser);
 
+  console.log("userInfo");
+  console.log(userInfo);
+
   const menu = (
     <Menu onClick={onClick}>
       <Menu.Item key="1">Logout</Menu.Item>
@@ -78,7 +81,7 @@ const NavBar = (props) => {
                     preview={false}
                   />
                   <div style={{marginLeft: "10px"}}>
-                  {userInfo.displayName}
+                  {userInfo.displayName}({userInfo.product})
                   </div>
                   <DownOutlined />
                 </div>
