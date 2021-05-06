@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Navbar, Nav, Form, FormControl, Button, Image } from "react-bootstrap";
-import { Menu, Dropdown, message } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-import Cookies from "js-cookie";
-
-const NavBar = () => {
-  
-  const history = useHistory();
-  const onClick = ({ key }) => {
-    if (`${key}` == 1) {
-      history.push('/')
-  }
-  };
-  const menu = (
-    <Menu onClick={onClick}>
-      
-        <Menu.Item key="1" onClick={
-          (Cookies.remove("spotifyAuthToken" , "username"))
-        }>Logout</Menu.Item>
-        
-    </Menu>
-  );
-=======
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
@@ -77,30 +51,21 @@ const NavBar = (props) => {
     </Menu>
   );
 
->>>>>>> QA
   return (
     <div>
       <Navbar bg="dark" variant="dark" className="bg-dark-sync">
         {" "}
         {/*fixed="top" TOOK THIS OFF, WAS ADDING SCROLL TO PAGES WHEN NOT NEEDED*/}
         <Navbar.Brand href="/Home">
-<<<<<<< HEAD
-=======
         <div className="user-picture-name">
->>>>>>> QA
           <Image
             src="/assets/logoImage2.png"
             href="/Home"
             style={{ width: "65px", marginRight: "10px" }}
-<<<<<<< HEAD
-          />
-          SYNC
-=======
             preview={false}
           />
           SYNC
           </div>
->>>>>>> QA
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/Createpage">Create</Nav.Link>
@@ -112,11 +77,6 @@ const NavBar = (props) => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-<<<<<<< HEAD
-            signed in as, <Dropdown overlay={menu}>
-              <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-              {Cookies.get("username")}<DownOutlined />
-=======
             <Dropdown overlay={menu}>
               <a
                 className="ant-dropdown-link"
@@ -134,7 +94,6 @@ const NavBar = (props) => {
                   </div>
                   <DownOutlined />
                 </div>
->>>>>>> QA
               </a>
             </Dropdown>
           </Navbar.Text>

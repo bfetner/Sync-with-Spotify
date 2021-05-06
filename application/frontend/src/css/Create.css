@@ -40,8 +40,6 @@
 
 .content-wrap {
   flex: 1;
-<<<<<<< HEAD
-=======
 }
 
 #roombuttonwrapper #popup {
@@ -51,5 +49,4 @@
   display: block;
   justify-items: left;
   align-items: left;
->>>>>>> QA
 }

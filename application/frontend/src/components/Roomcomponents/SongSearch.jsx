@@ -1,9 +1,5 @@
 import React, { Component, useState, Fragment, useEffect } from "react";
 import {
-<<<<<<< HEAD
-  Form,
-=======
->>>>>>> QA
   Input,
   Button,
   Checkbox,
@@ -17,13 +13,6 @@ import {
   Typography,
   Popover,
 } from "antd";
-<<<<<<< HEAD
-import Axios from "axios";
-import "../../css/SongSearch.css";
-import { PlusOutlined } from "@ant-design/icons";
-
-const SongSearch = (props) => {
-=======
 import { Container, Image, Form } from "react-bootstrap";
 import Axios from "axios";
 import "../../css/SongSearch.css";
@@ -55,15 +44,10 @@ const SongSearch = (props) => {
     return retrieveUserInfo;
   };
 
->>>>>>> QA
   const [searchValue, setSearchValue] = useState("");
   const [options, setOptions] = useState([]);
   const [viewData, setViewData] = useState([]);
   const [searchedData, setSearchedData] = useState([]);
-<<<<<<< HEAD
-=======
-
->>>>>>> QA
   const viewRooms = () => {};
   useEffect(() => {
     setOptions(props.avaliableSongs);
@@ -79,10 +63,7 @@ const SongSearch = (props) => {
   }, []);
 
   console.log(viewData);
-<<<<<<< HEAD
-=======
   console.log("options");
->>>>>>> QA
   console.log(options);
 
   useEffect(() => {
@@ -100,13 +81,6 @@ const SongSearch = (props) => {
   };
 
   const handleAddClick = (e) => {
-<<<<<<< HEAD
-    console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-    console.log(e);
-    props.addSongToQueue(e);
-  };
-
-=======
     props.addSongToQueue(e);
   };
 
@@ -223,7 +197,6 @@ const SongSearch = (props) => {
 
   /* Functions for spotify search END */
 
->>>>>>> QA
   return (
     <div className="songsearch-main">
       <div class="main">
@@ -232,104 +205,6 @@ const SongSearch = (props) => {
         </div>
       </div>
 
-<<<<<<< HEAD
-      <div>
-        {options && (
-          <AutoComplete
-            style={{ width: "calc(100% - 15px)", marginBottom: "10px" }}
-            onSearch={(value) => {
-              setSearchValue(value);
-              console.log(value);
-              let result = viewData.filter((d) =>
-                d.title.toLowerCase().includes(value.toLowerCase())
-              );
-              setSearchedData(result);
-            }}
-            onSelect={(value) => {
-              setSearchValue(value);
-              console.log(value);
-              let result = viewData.filter((d) =>
-                d.title.toLowerCase().includes(value.toLowerCase())
-              );
-              setSearchedData(result);
-            }}
-            notFoundContent="Sorry, that song was not found..."
-            options={options}
-            placeholder={"Search for a song"}
-            filterOption={(inputValue, input) =>
-              input.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
-            }
-          ></AutoComplete>
-        )}
-      </div>
-
-      <div className="searchsong-results">
-        <Divider />
-        {searchedData && searchedData.length > 0 && (
-          <div>
-            <Row>
-              <div class="main">
-                <div className="searchsong-text">
-                  {'Searched Songs by Name "' + searchValue + '"'}
-                </div>
-              </div>
-
-              {searchedData &&
-                searchedData.map((d, index) => (
-                  <div className="songsearch-result-card">
-                    <Popover
-                      content={d.title}
-                      trigger="hover"
-                      className="songsearch-result-card-image-title"
-                    >
-                      <img
-                        alt="example"
-                        src={d.url}
-                        style={{ width: "50px" }}
-                      />
-                      <div> {d.title}</div>
-                    </Popover>
-                    <button
-                      className="songsearch-add-icon-button"
-                      onClick={() => handleAddClick(d.title)}
-                    >
-                      <PlusOutlined className="searchsong-add-icon" />
-                    </button>
-                  </div>
-                ))}
-            </Row>
-            <Divider />
-          </div>
-        )}
-
-        <div class="main">
-          <div className="searchsong-text">
-            {searchedData && searchedData.length > 0
-              ? "Recommended Songs"
-              : "Recommended Songs"}
-          </div>
-        </div>
-
-        {viewData &&
-          viewData.map((d, index) => (
-            <div className="songsearch-result-card">
-              <Popover
-                content={d.title}
-                trigger="hover"
-                className="songsearch-result-card-image-title"
-              >
-                <img alt="example" src={d.url} style={{ width: "50px" }} />
-                <div> {d.title}</div>
-              </Popover>
-              <button
-                className="songsearch-add-icon-button"
-                onClick={() => handleAddClick(d.title)}
-              >
-                <PlusOutlined className="searchsong-add-icon" />
-              </button>
-            </div>
-          ))}
-=======
       <div className="searchsong-results">
         {/* Spotify song search START */}
         <Container
@@ -365,7 +240,6 @@ const SongSearch = (props) => {
         {recommendedResults.map((track) => (
           <SearchResultCard track={track} handleAddClick={handleAddClick} />
         ))}
->>>>>>> QA
       </div>
     </div>
   );

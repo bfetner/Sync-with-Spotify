@@ -1,21 +1,6 @@
-<<<<<<< HEAD
-import React, {
-  Component,
-  useState,
-  Box,
-  Flex,
-  ImageBackground,
-  View,
-  Text,
-  useEffect,
-} from "react";
-import { Form, Input, Checkbox, Modal, Button } from "antd";
-import { Link, useHistory } from "react-router-dom";
-=======
 import React, { useState, useEffect } from "react";
 import { Form, Input, Checkbox, Modal, Button } from "antd";
 import { Link, useHistory, Redirect } from "react-router-dom";
->>>>>>> QA
 import Axios from "axios";
 
 import { Header } from "antd/lib/layout/layout";
@@ -25,29 +10,6 @@ import FaqComponent from "./FaqComponent";
 import Footer from "./Footer";
 import ToS from "./ToS";
 import "../css/Create.css";
-<<<<<<< HEAD
-
-import { SpotifyApiContext, User, UserTop } from "react-spotify-api";
-import Cookies from "js-cookie";
-import { SpotifyAuth, Scopes } from "react-spotify-auth";
-import defaultPfp from "../assets/image0.png";
-import TrackCard from "./TrackCard";
-import { Image } from "react-bootstrap";
-import {
-  MDBCol,
-  MDBContainer,
-  MDBRow,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
-  MDBBtn,
-} from "mdbreact";
-import "mdbreact/dist/css/mdb.css";
-
-const Landing = () => {
-=======
 import UserInfo from "./UserInfo";
 
 import { SpotifyApiContext, User, UserTop } from "react-spotify-api";
@@ -56,30 +18,10 @@ import { SpotifyAuth, Scopes, SpotifyAuthListener } from "react-spotify-auth";
 import { Component } from "react";
 
 const Landing = (props) => {
->>>>>>> QA
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const history = useHistory();
 
-<<<<<<< HEAD
-  const [spotifyAuthToken, setSpotifyAuthToken] = useState();
-  useEffect(() => {
-    setSpotifyAuthToken(Cookies.get("spotifyAuthToken"));
-    console.log(Scopes.all);
-  }, [Cookies.get("spotifyAuthToken")]);
-
-  const logout = () => {
-    Cookies.remove("spotifyAuthToken", {
-      path: dev ? "" : "?",
-    });
-    window.location = dev ? "/Landing" : "/?";
-  };
-
-  Cookies.set("username", "anonymous");
-
-  const dev = !process.env.NODE_ENV || process.env.NODE_ENV === "development";
-
-=======
   const userInfo = UserInfo;
 
   console.log(props);
@@ -129,7 +71,6 @@ const Landing = (props) => {
       });
   };
 
->>>>>>> QA
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -139,11 +80,7 @@ const Landing = (props) => {
   };
 
   const handleOk = () => {
-<<<<<<< HEAD
-    history.push("/Login");
-=======
     history.push("/Home");
->>>>>>> QA
   };
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -191,10 +128,6 @@ const Landing = (props) => {
     }
   };
 
-<<<<<<< HEAD
-  return (
-    <div className="main-landing">
-=======
   var shallRedirect;
   const redirectUser = retrieveCurrentUser();
   if (redirectUser) {
@@ -229,7 +162,6 @@ const Landing = (props) => {
             });
         }} */
       />
->>>>>>> QA
       <figure className="position-relative">
         <div className="logo-flex">
           <figcaption className="logo">
@@ -239,149 +171,6 @@ const Landing = (props) => {
             ></img>
           </figcaption>
         </div>
-<<<<<<< HEAD
-        <div className="fig-flex">
-          {Cookies.get("spotifyAuthToken") ? (
-            <>
-              <MDBRow>
-                <h1 class="text-light bg-dark">Hi! How's it going?</h1>
-              </MDBRow>
-
-              <SpotifyApiContext.Provider value={spotifyAuthToken}>
-                <User>
-                  {(user, loading, error) =>
-                    user && user.data ? (
-                      <>
-                        <MDBCol
-                          style={{
-                            maxWidth: "22rem",
-                            padding: "0 0 1rem 1rem",
-                          }}
-                        >
-                          <figcaption>
-                            <Link
-                              class="btn btn-dark sync-button-color landingButton-text"
-                              size="lg"
-                              onClick={() => onClickFunks()}
-                            >
-                              Ready? Let's Sync!
-                            </Link>
-                          </figcaption>
-
-                          <Form>
-                            <Form.Item className="text-color">
-                              <Checkbox
-                                onChange={confirmTos}
-                                required="required"
-                                className="text-color"
-                              ></Checkbox>
-                              &nbsp;&nbsp;Click here to accept our{" "}
-                              <a
-                                onClick={() => showModal()}
-                                style={{ color: "var(--color3)" }}
-                              >
-                                Terms of Service
-                              </a>
-                              .
-                            </Form.Item>
-                          </Form>
-                          <MDBCard>
-                            <Image
-                              src={
-                                user.data.images[0]
-                                  ? user.data.images[0]?.url
-                                  : defaultPfp
-                              }
-                              style={{
-                                width: "165px",
-                                marginLeft: "50px",
-                                marginTop: "20px",
-                              }}
-                              alt="Your Spotify Profile Picture"
-                            />
-
-                            <MDBCardBody style={{ padding: "1rem" }}>
-                              <MDBCardTitle>
-                                <ul>
-                                  <li>Welcome, {user.data.display_name}!</li>
-                                </ul>
-                                <MDBCardText>
-                                  Here's some of your top tracks, as listed by
-                                  Spotify.
-                                </MDBCardText>
-                              </MDBCardTitle>
-                            </MDBCardBody>
-                          </MDBCard>
-                        </MDBCol>
-                        <>
-                          {Cookies.set("username", user.data.display_name)}
-                          {Cookies.set("PlayerToken", spotifyAuthToken)}
-                        </>
-                      </>
-                    ) : (
-                      <h1>loading..</h1>
-                    )
-                  }
-                </User>
-                <div style={{ width: "100%" }}>
-                  <MDBRow className="masonry-with-columns">
-                    <UserTop type="tracks">
-                      {(tracks, loading, error) =>
-                        tracks && tracks.data
-                          ? tracks.data.items.map((track, ind) => {
-                              return (
-                                <>
-                                  <TrackCard track={track} />
-                                </>
-                              );
-                            })
-                          : null
-                      }
-                    </UserTop>
-                  </MDBRow>
-                </div>
-              </SpotifyApiContext.Provider>
-            </>
-          ) : (
-            <>
-              <figcaption className="banner">Welcome to SYNC!</figcaption>
-              <figcaption className="subtext1">
-                Share your spotify songs in one of our listening rooms!
-              </figcaption>
-              <figcaption className="subtext2">
-                Listen to music and chat with friends and the community!
-              </figcaption>
-              <figcaption className="landingButton">
-                <div
-                  className="spotifyBtn"
-                  onLoad={() => {
-                    Cookies.set("username", "anonymous");
-                  }}
-                >
-                  <SpotifyAuth
-                    redirectUri={"http://localhost:3000/"}
-                    clientID="ad4f63abc34f445d9f82549d5dcfeb67"
-                    scopes={[
-                      Scopes.userReadPrivate,
-                      Scopes.userReadEmail,
-                      "user-top-read",
-                      "user-read-recently-played",
-                    ]}
-                    title={"Login with Spotify!"}
-                    showDialog={true}
-                  />
-                </div>
-              </figcaption>
-              <br />
-              <br />
-              <br />
-              <br />
-              <FaqComponent />
-              <Footer />
-            </>
-          )}
-        </div>
-=======
 
         {Cookies.get("spotifyAuthToken") ? (
           <SpotifyApiContext.Provider value={spotifyAuthToken}>
@@ -454,7 +243,6 @@ const Landing = (props) => {
             </Form>
           </div>
         )}
->>>>>>> QA
       </figure>
       <Modal
         title="Terms of Service"
@@ -477,11 +265,8 @@ const Landing = (props) => {
           You must accept the Terms of Service to continue.
         </p>
       </Modal>
-<<<<<<< HEAD
-=======
       <FaqComponent />
       <Footer />
->>>>>>> QA
     </div>
   );
 };
