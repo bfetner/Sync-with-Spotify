@@ -34,14 +34,14 @@ const NavBar = (props) => {
   const retrieveCurrentUser = () => {
     const stringRetrieveUserInfo = localStorage.getItem("currentUser");
     const retrieveUserInfo = JSON.parse(stringRetrieveUserInfo);
+    //Add to database
+    //MYSQL USERNAME = userInfo.displayName 
     return retrieveUserInfo;
   };
 
-  const [userInfo, setUserInfo] = () => {
-    //Add to database
-    //MYSQL USERNAME = userInfo.displayName 
-    useState(retrieveCurrentUser);
-  }
+  const [userInfo, setUserInfo] = useState(retrieveCurrentUser);
+
+
   console.log("userInfo");
   console.log(userInfo);
 
