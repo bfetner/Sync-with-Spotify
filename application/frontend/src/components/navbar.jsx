@@ -13,6 +13,12 @@ const NavBar = (props) => {
       deleteCurrentUser();
       history.push("/");
     }
+    if (`${key}` == 2) {
+      history.push("/banuser");
+    }
+    if (`${key}` == 3) {
+      history.push("/deleteroom");
+    }
   };
 
   const deleteCurrentUser = () => {
@@ -39,6 +45,9 @@ const NavBar = (props) => {
   const menu = (
     <Menu onClick={onClick}>
       <Menu.Item key="1">Logout</Menu.Item>
+      <Menu.Item key="2">Ban a User</Menu.Item>
+      <Menu.Item key="3">Delete Rooms</Menu.Item>
+
     </Menu>
   );
 

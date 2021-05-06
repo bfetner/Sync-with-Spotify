@@ -11,7 +11,7 @@ import {
   Menu,
 } from "antd";
 import Axios from "axios";
-import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, SearchOutlined  } from "@ant-design/icons";
 import "../css/Join.css";
 import Footer from "./Footer";
 
@@ -108,7 +108,8 @@ const Join = (props) => {
   const searchRoom = () => {
     if (searchValue === "") return;
     let result = viewData.filter((d) =>
-      d.room_name.toLowerCase().includes(searchValue.toLowerCase())
+      d.room_name.toLowerCase().includes(searchValue.toLowerCase())||
+      d.genre.toLowerCase().includes(searchValue.toLowerCase())
     );
     setSearchedData(result);
   };
@@ -128,37 +129,6 @@ const Join = (props) => {
         </Row>
         {options && (
           <div className="search_bar">
-            <AutoComplete
-              style={{ width: "20%" }}
-              onSearch={(value) => {
-                setSearchValue(value);
-                console.log(value);
-                let result = viewData.filter(
-                  (d) =>
-                    d.room_name.toLowerCase().includes(value.toLowerCase()) ||
-                    d.genre.toLowerCase().includes(value.toLowerCase())
-                );
-                setSearchedData(result);
-              }}
-              onSelect={(value) => {
-                setSearchValue(value);
-                console.log(value);
-                let result = viewData.filter(
-                  (d) =>
-                    d.room_name.toLowerCase().includes(value.toLowerCase()) ||
-                    d.genre.toLowerCase().includes(value.toLowerCase())
-                );
-
-                setSearchedData(result);
-              }}
-              /* notFoundContent="Sorry, the room with this name or genre was not found..." */
-              options={options}
-              placeholder={searchBarText.textField}
-              filterOption={(inputValue, option) =>
-                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
-                -1
-              }
-            ></AutoComplete>
             <Dropdown overlay={menu}>
               <Button
                 type="primary"
@@ -168,6 +138,38 @@ const Join = (props) => {
                 {searchBarText.dropDown} <DownOutlined />
               </Button>
             </Dropdown>
+            <AutoComplete
+              style={{ width: "20%" }}
+              onSearch={(value) => {
+                setSearchValue(value);
+                console.log(value);
+                {/*let result = viewData.filter(
+                  (d) =>
+                    d.room_name.toLowerCase().includes(value.toLowerCase()) ||
+                    d.genre.toLowerCase().includes(value.toLowerCase())
+                );
+                setSearchedData(result);*/}
+              }}
+              onSelect={(value) => {
+                setSearchValue(value);
+                console.log(value);
+                {/*let result = viewData.filter(
+                  (d) =>
+                    d.room_name.toLowerCase().includes(value.toLowerCase()) ||
+                    d.genre.toLowerCase().includes(value.toLowerCase())
+                );
+
+                setSearchedData(result);*/}
+              }}
+              notFoundContent="Sorry, the room with this name or genre was not found..." 
+              options={options}
+              placeholder={searchBarText.textField}
+              filterOption={(inputValue, option) =>
+                option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !==
+                -1
+              }
+            ></AutoComplete>
+             <Button icon={<SearchOutlined />} className="dropdown_button" type="primary" onClick={()=>searchRoom()}></Button>
           </div>
         )}
 

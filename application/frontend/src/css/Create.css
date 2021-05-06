@@ -41,3 +41,12 @@
 .content-wrap {
   flex: 1;
 }
+
+#roombuttonwrapper #popup {
+  display: none;
+}
+#roombuttonwrapper:hover #popup {
+  display: block;
+  justify-items: left;
+  align-items: left;
+}

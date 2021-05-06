@@ -10,6 +10,8 @@ import {
   Select,
   Radio,
   Col,
+  Popup,
+  Popover,
 } from "antd";
 import Axios from "axios";
 import "../css/Create.css";
@@ -139,7 +141,7 @@ const Create = (props) => {
   const [roomName, setRoomName] = useState();
   const [roomGenre, setGenre] = useState();
   const [roomStatus, setRoomStatus] = useState(1);
-  const [tosStatus, setTosStatus] = useState(false);
+  //const [tosStatus, setTosStatus] = useState(false);
   const [noOfUsers, setNoOfUsers] = useState();
 
   const insertData = (rn, rg) => {
@@ -190,8 +192,9 @@ const Create = (props) => {
     console.log(validateRN(modalRoomName));
     console.log(modalRoomGenre);
     console.log(modalRoomStatus);
-    console.log(modalTosStatus);
-    if (validateRN(modalRoomName) && modalRoomGenre && modalTosStatus) {
+    //console.log(modalTosStatus);
+    if (validateRN(modalRoomName) && modalRoomGenre //&& modalTosStatus
+    ) {
       console.log("handleOk");
 
       props.history.push(
@@ -226,7 +229,7 @@ const Create = (props) => {
   const [modalRoomName, setModalRoomName] = useState();
   const [modalRoomGenre, setModalRoomGenre] = useState();
   const [modalRoomStatus, setModalRoomStatus] = useState();
-  const [modalTosStatus, setModalTosStatus] = useState();
+  //const [modalTosStatus, setModalTosStatus] = useState();
   const [modalUsers, setModalUsers] = useState();
 
   const onClickFunks = () => {
@@ -237,7 +240,7 @@ const Create = (props) => {
     const clickRoomName = roomName;
     const clickRoomGenre = roomGenre;
     const clickRoomStatus = roomStatus;
-    const clickTosStatus = tosStatus;
+    //const clickTosStatus = tosStatus;
     const clickUsers = noOfUsers;
     setModalUsers(clickUsers);
     setModalRoomName(clickRoomName);
@@ -247,7 +250,7 @@ const Create = (props) => {
     } else {
       setModalRoomStatus("Private Room");
     }
-    setModalTosStatus(clickTosStatus);
+    //setModalTosStatus(clickTosStatus);
 
     setModalMessage("");
     setSuccessModalMessage("");
@@ -257,9 +260,9 @@ const Create = (props) => {
     } else if (!clickRoomGenre) {
       setModalMessage("Please select a genre from the dropdown menu.");
       showModal();
-    } else if (!clickTosStatus) {
-      setModalMessage("You must accept the terms for service.");
-      showModal();
+      /*} else if (!clickTosStatus) {
+        setModalMessage("You must accept the terms for service.");
+        showModal();*/
     } else {
       setSuccessModalMessage(
         "You have successfully created a room! Press ok to continue."
@@ -269,9 +272,9 @@ const Create = (props) => {
     }
   };
 
-  const confirmTos = () => {
+  /*const confirmTos = () => {
     setTosStatus(!tosStatus);
-  };
+  };*/
 
   const formItemLayout = {
     labelCol: {
@@ -288,6 +291,18 @@ const Create = (props) => {
       offset: 5,
     },
   };
+
+  const publicRoomPopup = (
+    <div>
+      <p>A room searchable by anybody.</p>
+    </div>
+  );
+
+  const privateRoomPopup = (
+    <div>
+      <p>Only accessible if room link is shared.</p>
+    </div>
+  );
 
   return (
     <div className="create-main">
@@ -347,15 +362,19 @@ const Create = (props) => {
             }}
             value={roomStatus}
           >
-            <Radio className="text-color" value={1}>
-              Public Room
-            </Radio>
-            <Radio className="text-color" value={2}>
-              Private Room
-            </Radio>
+            <Popover content={publicRoomPopup} placement='top'>
+              <Radio className="text-color" value={1}>
+                Public Room
+                </Radio>
+            </Popover>
+            <Popover content={privateRoomPopup} placement='top'>
+              <Radio className="text-color" value={2}>
+                Private Room
+                </Radio>
+            </Popover>
           </Radio.Group>
         </Form.Item>
-        <Form.Item {...otherItemLayout} className="text-color">
+        {/*<Form.Item {...otherItemLayout} className="text-color">
           <Checkbox
             onChange={confirmTos}
             required="required"
@@ -365,8 +384,8 @@ const Create = (props) => {
           <a onClick={() => showModal1()} style={{ color: "var(--color3)" }}>
             Terms of Service
           </a>
-          .
-        </Form.Item>
+          
+          </Form.Item>*/}
         <Form.Item {...otherItemLayout} style={{ marginBottom: "0px" }}>
           <Button
             type="primary"
@@ -378,7 +397,7 @@ const Create = (props) => {
             Submit
           </Button>
         </Form.Item>
-      </Form>
+      </Form >
 
       <Modal
         title="Room Creation"
@@ -410,7 +429,7 @@ const Create = (props) => {
       >
         <ToS />
       </Modal>
-    </div>
+    </div >
   );
 };
 
