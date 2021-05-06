@@ -37,8 +37,11 @@ const NavBar = (props) => {
     return retrieveUserInfo;
   };
 
-  const [userInfo, setUserInfo] = useState(retrieveCurrentUser);
-
+  const [userInfo, setUserInfo] = () => {
+    //Add to database
+    //MYSQL USERNAME = userInfo.displayName 
+    useState(retrieveCurrentUser);
+  }
   console.log("userInfo");
   console.log(userInfo);
 
