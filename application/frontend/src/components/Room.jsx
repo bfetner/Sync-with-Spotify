@@ -214,14 +214,17 @@ const Room = (props) => {
     forceUpdate();
   };
 
-  const addSongToQueue = (title) => {
-    const newSong = albumList.filter((obj) => {
+  const addSongToQueue = (song) => {
+    /* const newSong = albumList.filter((obj) => {
       return obj.title === title;
     });
     const prepNewSong = prepSongsForQueue(newSong[0]);
     prepNewSong.vote = 0;
     const modifyingQueue = songsForQueue;
     modifyingQueue.push(prepNewSong);
+     */
+    console.log("addSongToQueue");
+    console.log(song);
     switchQueueSearchsong();
   };
 
@@ -328,6 +331,7 @@ const Room = (props) => {
               <SongSearch
                 avaliableSongs={albumList}
                 addSongToQueue={addSongToQueue}
+                roomGenre={roomGenre}
               />
             )}
             <Button
