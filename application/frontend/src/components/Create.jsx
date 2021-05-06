@@ -10,6 +10,8 @@ import {
   Select,
   Radio,
   Col,
+  Popup,
+  Popover,
 } from "antd";
 import Axios from "axios";
 import "../css/Create.css";
@@ -258,9 +260,9 @@ const Create = (props) => {
     } else if (!clickRoomGenre) {
       setModalMessage("Please select a genre from the dropdown menu.");
       showModal();
-    /*} else if (!clickTosStatus) {
-      setModalMessage("You must accept the terms for service.");
-      showModal();*/
+      /*} else if (!clickTosStatus) {
+        setModalMessage("You must accept the terms for service.");
+        showModal();*/
     } else {
       setSuccessModalMessage(
         "You have successfully created a room! Press ok to continue."
@@ -289,6 +291,18 @@ const Create = (props) => {
       offset: 5,
     },
   };
+
+  const publicRoomPopup = (
+    <div>
+      <p>A room searchable by anybody.</p>
+    </div>
+  );
+
+  const privateRoomPopup = (
+    <div>
+      <p>Only accessible if room link is shared.</p>
+    </div>
+  );
 
   return (
     <div className="create-main">
@@ -348,12 +362,16 @@ const Create = (props) => {
             }}
             value={roomStatus}
           >
-            <Radio className="text-color" value={1}>
-              Public Room
-            </Radio>
-            <Radio className="text-color" value={2}>
-              Private Room
-            </Radio>
+            <Popover content={publicRoomPopup} placement='top'>
+              <Radio className="text-color" value={1}>
+                Public Room
+                </Radio>
+            </Popover>
+            <Popover content={privateRoomPopup} placement='top'>
+              <Radio className="text-color" value={2}>
+                Private Room
+                </Radio>
+            </Popover>
           </Radio.Group>
         </Form.Item>
         {/*<Form.Item {...otherItemLayout} className="text-color">
@@ -379,7 +397,7 @@ const Create = (props) => {
             Submit
           </Button>
         </Form.Item>
-      </Form>
+      </Form >
 
       <Modal
         title="Room Creation"
@@ -411,7 +429,7 @@ const Create = (props) => {
       >
         <ToS />
       </Modal>
-    </div>
+    </div >
   );
 };
 
