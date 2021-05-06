@@ -26,7 +26,7 @@ class Rooms(models.Model):
         return self.room_name
 
 class Room_list(models.Model):
-    room_name = models.CharField(Rooms, on_delete=models.CASCADE)
+    #room_name = models.CharField(Rooms, on_delete=models.CASCADE)
     room_list_title = models.CharField(max_length=255)
 
 class Vote(models.Model):                      

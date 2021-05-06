@@ -44,13 +44,24 @@ const DeleteRoom = (props) => {
             (Math.floor(Math.random() * 6) + 1)
         );
       };
-      const deleteRoom = (id) => {
-   
-        const resultRoomId = id;
-        console.log(resultRoomId)
-        Axios.delete("http://localhost:8000/api/adds/"+ resultRoomId)
+      const refreshpage = () => {
+        Axios.get("http://localhost:8000/api/adds/")
         .then((res) => {
-           history.push('/deleteroom')
+            console.log(res.data);
+            setViewData(res.data);
+        })
+        .catch((er) => console.log(er));
+      }
+      const deleteRoom = (roomid) => {
+   
+        var data = {
+          
+          id: roomid,
+        };
+        console.log(data.id)
+        Axios.delete("http://localhost:8000/api/adds/"+ data.id + "/")
+        .then((res) => {
+         refreshpage()
            
         })
         .catch((er) => console.log(er));
