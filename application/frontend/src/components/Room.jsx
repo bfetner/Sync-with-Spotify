@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
+=======
+import React, { useState } from "react";
+>>>>>>> QA
 import { Button, Popover } from "antd";
 import Axios from "axios";
 import MusicPlayer from "./Roomcomponents/MusicPlayer.jsx";
@@ -8,11 +12,14 @@ import SongSearch from "./Roomcomponents/SongSearch.jsx";
 import "../css/Room.css";
 import { Redirect } from "react-router-dom";
 import { CopyFilled, UserOutlined } from "@ant-design/icons";
+<<<<<<< HEAD
 import Cookies from "js-cookie";
 
 import SpotifyWebApi from "spotify-web-api-node";
 import TrackSearchResult from "./Roomcomponents/TrackSearchResult.js";
 import { Container, Form, Image } from "react-bootstrap";
+=======
+>>>>>>> QA
 
 {
   /*import albumCover from "./assets/image0.png";
@@ -20,10 +27,13 @@ import { Container, Form, Image } from "react-bootstrap";
   */
 }
 
+<<<<<<< HEAD
 const spotifyApi = new SpotifyWebApi({
   clientId: "ad4f63abc34f445d9f82549d5dcfeb67",
 });
 
+=======
+>>>>>>> QA
 const useForceUpdate = () => {
   const [_, setState] = useState(false);
   return () => setState((val) => !val);
@@ -223,14 +233,25 @@ const Room = (props) => {
     forceUpdate();
   };
 
+<<<<<<< HEAD
   const addSongToQueue = (title) => {
     const newSong = albumList.filter((obj) => {
+=======
+  const addSongToQueue = (song) => {
+    /* const newSong = albumList.filter((obj) => {
+>>>>>>> QA
       return obj.title === title;
     });
     const prepNewSong = prepSongsForQueue(newSong[0]);
     prepNewSong.vote = 0;
     const modifyingQueue = songsForQueue;
     modifyingQueue.push(prepNewSong);
+<<<<<<< HEAD
+=======
+     */
+    console.log("addSongToQueue");
+    console.log(song);
+>>>>>>> QA
     switchQueueSearchsong();
   };
 
@@ -322,6 +343,7 @@ const Room = (props) => {
     console.log(songsForQueue);
   };
 
+<<<<<<< HEAD
 
 
 
@@ -403,6 +425,8 @@ const Room = (props) => {
     return () => (cancel = true);
   }, [search, accessToken]);
 
+=======
+>>>>>>> QA
   return (
     <div>
       <div class="main room-main">
@@ -418,6 +442,10 @@ const Room = (props) => {
               <SongSearch
                 avaliableSongs={albumList}
                 addSongToQueue={addSongToQueue}
+<<<<<<< HEAD
+=======
+                roomGenre={roomGenre}
+>>>>>>> QA
               />
             )}
             <Button
@@ -455,6 +483,7 @@ const Room = (props) => {
                 </Popover>
               </div>
             </div>
+<<<<<<< HEAD
 
 
 
@@ -510,6 +539,12 @@ const Room = (props) => {
 
 
             
+=======
+            <MusicPlayer
+              currentSong={songs}
+              handleEndOfSong={handleEndOfSong}
+            />
+>>>>>>> QA
           </div>
           <div class="chatflex">
             <Chat roomName={roomName} />

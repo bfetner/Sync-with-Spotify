@@ -11,7 +11,11 @@ import {
   Menu,
 } from "antd";
 import Axios from "axios";
+<<<<<<< HEAD
 import { DownOutlined, SearchOutlined } from "@ant-design/icons";
+=======
+import { DownOutlined, SearchOutlined  } from "@ant-design/icons";
+>>>>>>> QA
 import "../css/Join.css";
 import Footer from "./Footer";
 
@@ -108,7 +112,11 @@ const Join = (props) => {
   const searchRoom = () => {
     if (searchValue === "") return;
     let result = viewData.filter((d) =>
+<<<<<<< HEAD
       d.room_name.toLowerCase().includes(searchValue.toLowerCase()) ||
+=======
+      d.room_name.toLowerCase().includes(searchValue.toLowerCase())||
+>>>>>>> QA
       d.genre.toLowerCase().includes(searchValue.toLowerCase())
     );
     setSearchedData(result);
@@ -169,7 +177,11 @@ const Join = (props) => {
                 -1
               }
             ></AutoComplete>
+<<<<<<< HEAD
                <Button icon={<SearchOutlined />} className="dropdown_button" type="primary" onClick={()=>searchRoom()}></Button>
+=======
+             <Button icon={<SearchOutlined />} className="dropdown_button" type="primary" onClick={()=>searchRoom()}></Button>
+>>>>>>> QA
           </div>
         )}
 

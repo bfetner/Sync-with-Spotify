@@ -14,6 +14,11 @@ import Footer from "./components/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import BackgroundImage from "./assets/bgimages/test.png";
+<<<<<<< HEAD
+=======
+import Ban_User from "./components/Ban_User";
+import DeleteRoom from "./components/DeleteRoom";
+>>>>>>> QA
 
 class App extends React.Component {
   render() {
@@ -32,6 +37,12 @@ class App extends React.Component {
             />
             <Route path="/Contact" exact component={Contactus}></Route>
             <Route path="/Aboutus" exact component={Aboutus}></Route>
+<<<<<<< HEAD
+=======
+            <Route path="/banuser" exact component={Ban_User}></Route>
+            <Route path="/deleteroom" exact component={DeleteRoom}></Route>
+
+>>>>>>> QA
           </Switch>
         </div>
       );

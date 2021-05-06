@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Navbar, Nav, Form, FormControl, Button, Image } from "react-bootstrap";
@@ -22,18 +23,84 @@ const NavBar = () => {
         
     </Menu>
   );
+=======
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Menu, Dropdown, Image } from "antd";
+import { DownOutlined } from "@ant-design/icons";
+import Cookies from "js-cookie";
+import "../css/navbar.css";
+
+const NavBar = (props) => {
+  const history = useHistory();
+  const onClick = ({ key }) => {
+    if (`${key}` == 1) {
+      deleteCurrentUser();
+      history.push("/");
+    }
+    if (`${key}` == 2) {
+      history.push("/banuser");
+    }
+    if (`${key}` == 3) {
+      history.push("/deleteroom");
+    }
+  };
+
+  const deleteCurrentUser = () => {
+    localStorage.removeItem("currentUser");
+    Cookies.remove("spotifyAuthToken");
+  }
+
+  const updateCurrentUser = (updateUserInfo) => {
+    const stringUpdateUserInfo = JSON.stringify(updateUserInfo);
+    localStorage.setItem("currentUser", stringUpdateUserInfo);
+  };
+
+  const retrieveCurrentUser = () => {
+    const stringRetrieveUserInfo = localStorage.getItem("currentUser");
+    const retrieveUserInfo = JSON.parse(stringRetrieveUserInfo);
+    return retrieveUserInfo;
+  };
+
+  const [userInfo, setUserInfo] = useState(retrieveCurrentUser);
+
+  console.log("userInfo");
+  console.log(userInfo);
+
+  const menu = (
+    <Menu onClick={onClick}>
+      <Menu.Item key="1">Logout</Menu.Item>
+      <Menu.Item key="2">Ban a User</Menu.Item>
+      <Menu.Item key="3">Delete Rooms</Menu.Item>
+
+    </Menu>
+  );
+
+>>>>>>> QA
   return (
     <div>
       <Navbar bg="dark" variant="dark" className="bg-dark-sync">
         {" "}
         {/*fixed="top" TOOK THIS OFF, WAS ADDING SCROLL TO PAGES WHEN NOT NEEDED*/}
         <Navbar.Brand href="/Home">
+<<<<<<< HEAD
+=======
+        <div className="user-picture-name">
+>>>>>>> QA
           <Image
             src="/assets/logoImage2.png"
             href="/Home"
             style={{ width: "65px", marginRight: "10px" }}
+<<<<<<< HEAD
           />
           SYNC
+=======
+            preview={false}
+          />
+          SYNC
+          </div>
+>>>>>>> QA
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/Createpage">Create</Nav.Link>
@@ -45,9 +112,29 @@ const NavBar = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
+<<<<<<< HEAD
             signed in as, <Dropdown overlay={menu}>
               <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
               {Cookies.get("username")}<DownOutlined />
+=======
+            <Dropdown overlay={menu}>
+              <a
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+              >
+                <div className="user-picture-name">
+                  <Image
+                    width={50}
+                    src={userInfo.profilePictureUrl}
+                    style={{ borderRadius: "25px"}}
+                    preview={false}
+                  />
+                  <div style={{marginLeft: "10px"}}>
+                  {userInfo.displayName}({userInfo.product})
+                  </div>
+                  <DownOutlined />
+                </div>
+>>>>>>> QA
               </a>
             </Dropdown>
           </Navbar.Text>

@@ -10,6 +10,11 @@ import {
   Select,
   Radio,
   Col,
+<<<<<<< HEAD
+=======
+  Popup,
+  Popover,
+>>>>>>> QA
 } from "antd";
 import Axios from "axios";
 import "../css/Create.css";
@@ -139,7 +144,11 @@ const Create = (props) => {
   const [roomName, setRoomName] = useState();
   const [roomGenre, setGenre] = useState();
   const [roomStatus, setRoomStatus] = useState(1);
+<<<<<<< HEAD
  // const [tosStatus, setTosStatus] = useState(false);
+=======
+  //const [tosStatus, setTosStatus] = useState(false);
+>>>>>>> QA
   const [noOfUsers, setNoOfUsers] = useState();
 
   const insertData = (rn, rg) => {
@@ -191,8 +200,13 @@ const Create = (props) => {
     console.log(modalRoomGenre);
     console.log(modalRoomStatus);
     //console.log(modalTosStatus);
+<<<<<<< HEAD
     if (validateRN(modalRoomName) && modalRoomGenre  ) {//&& modalTosStatus
    
+=======
+    if (validateRN(modalRoomName) && modalRoomGenre //&& modalTosStatus
+    ) {
+>>>>>>> QA
       console.log("handleOk");
 
       props.history.push(
@@ -238,7 +252,11 @@ const Create = (props) => {
     const clickRoomName = roomName;
     const clickRoomGenre = roomGenre;
     const clickRoomStatus = roomStatus;
+<<<<<<< HEAD
    // const clickTosStatus = tosStatus;
+=======
+    //const clickTosStatus = tosStatus;
+>>>>>>> QA
     const clickUsers = noOfUsers;
     setModalUsers(clickUsers);
     setModalRoomName(clickRoomName);
@@ -258,9 +276,15 @@ const Create = (props) => {
     } else if (!clickRoomGenre) {
       setModalMessage("Please select a genre from the dropdown menu.");
       showModal();
+<<<<<<< HEAD
     {/*}} else if (!clickTosStatus) {
       setModalMessage("You must accept the terms for service.");
     showModal();*/}
+=======
+      /*} else if (!clickTosStatus) {
+        setModalMessage("You must accept the terms for service.");
+        showModal();*/
+>>>>>>> QA
     } else {
       setSuccessModalMessage(
         "You have successfully created a room! Press ok to continue."
@@ -270,9 +294,15 @@ const Create = (props) => {
     }
   };
 
+<<<<<<< HEAD
  {/*} const confirmTos = () => {
     setTosStatus(!tosStatus);
   };*/}
+=======
+  /*const confirmTos = () => {
+    setTosStatus(!tosStatus);
+  };*/
+>>>>>>> QA
 
   const formItemLayout = {
     labelCol: {
@@ -290,6 +320,21 @@ const Create = (props) => {
     },
   };
 
+<<<<<<< HEAD
+=======
+  const publicRoomPopup = (
+    <div>
+      <p>A room searchable by anybody.</p>
+    </div>
+  );
+
+  const privateRoomPopup = (
+    <div>
+      <p>Only accessible if room link is shared.</p>
+    </div>
+  );
+
+>>>>>>> QA
   return (
     <div className="create-main">
       <Form
@@ -348,12 +393,25 @@ const Create = (props) => {
             }}
             value={roomStatus}
           >
+<<<<<<< HEAD
             <Radio className="text-color" value={1}>
               Public Room
             </Radio>
             <Radio className="text-color" value={2}>
               Private Room
             </Radio>
+=======
+            <Popover content={publicRoomPopup} placement='top'>
+              <Radio className="text-color" value={1}>
+                Public Room
+                </Radio>
+            </Popover>
+            <Popover content={privateRoomPopup} placement='top'>
+              <Radio className="text-color" value={2}>
+                Private Room
+                </Radio>
+            </Popover>
+>>>>>>> QA
           </Radio.Group>
         </Form.Item>
         {/*<Form.Item {...otherItemLayout} className="text-color">
@@ -366,7 +424,11 @@ const Create = (props) => {
           <a onClick={() => showModal1()} style={{ color: "var(--color3)" }}>
             Terms of Service
           </a>
+<<<<<<< HEAD
           .
+=======
+          
+>>>>>>> QA
           </Form.Item>*/}
         <Form.Item {...otherItemLayout} style={{ marginBottom: "0px" }}>
           <Button
@@ -379,7 +441,11 @@ const Create = (props) => {
             Submit
           </Button>
         </Form.Item>
+<<<<<<< HEAD
       </Form>
+=======
+      </Form >
+>>>>>>> QA
 
       <Modal
         title="Room Creation"
@@ -411,7 +477,11 @@ const Create = (props) => {
       >
         <ToS />
       </Modal>
+<<<<<<< HEAD
     </div>
+=======
+    </div >
+>>>>>>> QA
   );
 };
 

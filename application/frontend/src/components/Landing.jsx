@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {
   Component,
   useState,
@@ -10,6 +11,11 @@ import React, {
 } from "react";
 import { Form, Input, Checkbox, Modal, Button } from "antd";
 import { Link, useHistory } from "react-router-dom";
+=======
+import React, { useState, useEffect } from "react";
+import { Form, Input, Checkbox, Modal, Button } from "antd";
+import { Link, useHistory, Redirect } from "react-router-dom";
+>>>>>>> QA
 import Axios from "axios";
 
 import { Header } from "antd/lib/layout/layout";
@@ -19,6 +25,7 @@ import FaqComponent from "./FaqComponent";
 import Footer from "./Footer";
 import ToS from "./ToS";
 import "../css/Create.css";
+<<<<<<< HEAD
 
 import { SpotifyApiContext, User, UserTop } from "react-spotify-api";
 import Cookies from "js-cookie";
@@ -40,10 +47,21 @@ import {
 import "mdbreact/dist/css/mdb.css";
 
 const Landing = () => {
+=======
+import UserInfo from "./UserInfo";
+
+import { SpotifyApiContext, User, UserTop } from "react-spotify-api";
+import Cookies from "js-cookie";
+import { SpotifyAuth, Scopes, SpotifyAuthListener } from "react-spotify-auth";
+import { Component } from "react";
+
+const Landing = (props) => {
+>>>>>>> QA
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const history = useHistory();
 
+<<<<<<< HEAD
   const [spotifyAuthToken, setSpotifyAuthToken] = useState();
   useEffect(() => {
     setSpotifyAuthToken(Cookies.get("spotifyAuthToken"));
@@ -61,6 +79,57 @@ const Landing = () => {
 
   const dev = !process.env.NODE_ENV || process.env.NODE_ENV === "development";
 
+=======
+  const userInfo = UserInfo;
+
+  console.log(props);
+
+  const updateCurrentUser = (updateUserInfo) => {
+    const stringUpdateUserInfo = JSON.stringify(updateUserInfo);
+    localStorage.setItem("currentUser", stringUpdateUserInfo);
+  };
+
+  const retrieveCurrentUser = () => {
+    const stringRetrieveUserInfo = localStorage.getItem("currentUser");
+    const retrieveUserInfo = JSON.parse(stringRetrieveUserInfo);
+    return retrieveUserInfo;
+  };
+
+  const [spotifyAuthToken, setSpotifyAuthToken] = useState(
+    Cookies.get("spotifyAuthToken")
+  );
+
+  useEffect(() => {
+    setSpotifyAuthToken(Cookies.get("spotifyAuthToken"));
+    /* console.log(Scopes.all); */
+  }, [Cookies.get("spotifyAuthToken")]);
+
+  const handleTokenRetrieval = (token) => {
+    Axios.get("https://api.spotify.com/v1/me", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    })
+      .then((res) => {
+        userInfo.userId = res.data.id;
+        userInfo.displayName = res.data.display_name;
+        if (res.data.images.length !== 0) {
+          userInfo.profilePictureUrl = res.data.images[0].url;
+        }
+        userInfo.administratorStatus = false;
+        userInfo.spotifyToken = token;
+        userInfo.product = res.data.product;
+        updateCurrentUser(userInfo);
+        history.push("/Home");
+      })
+      .catch((er) => {
+        console.log(er);
+      });
+  };
+
+>>>>>>> QA
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -70,7 +139,11 @@ const Landing = () => {
   };
 
   const handleOk = () => {
+<<<<<<< HEAD
     history.push("/Login");
+=======
+    history.push("/Home");
+>>>>>>> QA
   };
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -118,8 +191,45 @@ const Landing = () => {
     }
   };
 
+<<<<<<< HEAD
   return (
     <div className="main-landing">
+=======
+  var shallRedirect;
+  const redirectUser = retrieveCurrentUser();
+  if (redirectUser) {
+    shallRedirect = retrieveCurrentUser().spotifyToken;
+  }
+  if (shallRedirect) {
+    return <Redirect to="/Home" />;
+  }
+  return (
+    <div className="main-landing">
+      <SpotifyAuthListener
+      /* onAccessToken={(token) => {
+          console.log("SpotifyAuthListener");
+          Axios.get("https://api.spotify.com/v1/me", {
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+          })
+            .then((res) => {
+              userInfo.userId = res.data.id;
+              userInfo.displayName = res.data.display_name;
+              userInfo.profilePictureUrl = res.data.images[0].url;
+              userInfo.administratorStatus = false;
+              userInfo.spotifyToken = token;
+              updateCurrentUser(userInfo);
+              history.push("/Home");
+            })
+            .catch((er) => {
+              console.log(er);
+            });
+        }} */
+      />
+>>>>>>> QA
       <figure className="position-relative">
         <div className="logo-flex">
           <figcaption className="logo">
@@ -129,6 +239,7 @@ const Landing = () => {
             ></img>
           </figcaption>
         </div>
+<<<<<<< HEAD
         <div className="fig-flex">
           {Cookies.get("spotifyAuthToken") ? (
             <>
@@ -270,6 +381,80 @@ const Landing = () => {
             </>
           )}
         </div>
+=======
+
+        {Cookies.get("spotifyAuthToken") ? (
+          <SpotifyApiContext.Provider value={spotifyAuthToken}>
+            <div className="fig-flex">
+              {handleTokenRetrieval(spotifyAuthToken)}
+              <User>
+                {(user, loading, error) =>
+                  user && user.data ? (
+                    <div>{spotifyAuthToken}</div>
+                  ) : (
+                    <div>Loading...</div>
+                  )
+                }
+              </User>
+            </div>
+          </SpotifyApiContext.Provider>
+        ) : (
+          <div className="fig-flex">
+            <figcaption className="banner">Welcome to SYNC!</figcaption>
+            <figcaption className="subtext1">
+              Share your spotify songs in one of our listening rooms!
+            </figcaption>
+            <figcaption className="subtext2">
+              Listen to music and chat with friends and the community!
+            </figcaption>
+            <figcaption className="landingButton">
+              {!tosStatus && (
+                <Link
+                  class="btn btn-dark sync-button-color landingButton-text"
+                  size="lg"
+                  onClick={() => onClickFunks()}
+                >
+                  Login with Spotify!
+                </Link>
+              )}
+              {tosStatus && (
+                <SpotifyAuth
+                  redirectUri={"http://localhost:3000"}
+                  clientID="ad4f63abc34f445d9f82549d5dcfeb67"
+                  scopes={[
+                    Scopes.userReadPrivate,
+                    Scopes.userReadEmail,
+                    "user-top-read",
+                    "user-read-recently-played",
+                  ]}
+                  title={"Login with Spotify!"}
+                  showDialog={true}
+                  noLogo={true}
+                  btnClassName="btn btn-dark sync-button-color landingButton-text"
+                />
+              )}
+            </figcaption>
+
+            <Form>
+              <Form.Item className="text-color">
+                <Checkbox
+                  onChange={confirmTos}
+                  required="required"
+                  className="text-color"
+                ></Checkbox>
+                &nbsp;&nbsp;Click here to accept our{" "}
+                <a
+                  onClick={() => showModal()}
+                  style={{ color: "var(--color3)" }}
+                >
+                  Terms of Service
+                </a>
+                .
+              </Form.Item>
+            </Form>
+          </div>
+        )}
+>>>>>>> QA
       </figure>
       <Modal
         title="Terms of Service"
@@ -292,6 +477,11 @@ const Landing = () => {
           You must accept the Terms of Service to continue.
         </p>
       </Modal>
+<<<<<<< HEAD
+=======
+      <FaqComponent />
+      <Footer />
+>>>>>>> QA
     </div>
   );
 };
