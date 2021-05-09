@@ -5,14 +5,19 @@
 :root {
   --color1: #222831;
   --color2: #393e46;
+  --color2-brighter: #4a515c;
   --color3: #00adb5;
   --color3-darker: #007c82;
   --color4: #eeeeee;
 }
 
 body {
-  background-color: var(--color1) !important;
-  color: var(--color4) !important;
+  /* background-color: var(--color1) !important; */
+  /* background-image: url(./assets/bgimages/test.png);
+  background-position: center;
+  background-size: 100vw;
+  color: var(--color4) !important; */
+  background-image: linear-gradient(var(--color1), black, var(--color1));
 }
 
 /*.old_body {

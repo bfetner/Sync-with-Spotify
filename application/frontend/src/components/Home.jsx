@@ -13,8 +13,10 @@ import { Link, useHistory } from "react-router-dom";
 import Axios from "axios";
 import "../css/Home.css";
 import Create from "./Create";
+import Footer from "./Footer";
 
 const Home = (props) => {
+  
   {
     /* For creating rooms */
   }
@@ -54,17 +56,18 @@ const Home = (props) => {
   {
     /* For joining rooms */
   }
-  const joinRoom = () => {
-    var rooms = document.getElementById("rooms").value;
-    console.log("hi");
-    console.log(rooms);
-    const resultRoomGenre = "unknown";
-    const resultRoomName = "unknown";
+  
+  const joinRoom = (name,gen) => {
+   
+    const resultRoomGenre = gen;
+    const resultRoomName = name;
     props.history.push(
       "/Room/" +
         resultRoomGenre +
         "/" +
         resultRoomName +
+        "/" +
+        undefined +  
         "/" +
         (Math.floor(Math.random() * 6) + 1)
     );
@@ -129,8 +132,7 @@ const Home = (props) => {
                       <Typography.Text
                         className="join_text"
                         style={{ float: "right" }}
-                        id="rooms"
-                        value={d.room_name}
+                      
                       >
                         {d.room_name}
                       </Typography.Text>
@@ -145,13 +147,25 @@ const Home = (props) => {
                         {d.genre}
                       </Typography.Text>
                     </Col>
-                    <Col xs={24}>
-                      <Button
-                        type="link"
-                        onClick={() => joinRoom()}
+                    <Col xs={24} className="join_text">
+                      No of members:
+                      <Typography.Text
+                        className="join_text"
                         style={{ float: "right" }}
                       >
-                        Click to join
+                        {Math.floor(Math.random()*50)}
+                      </Typography.Text>
+                    </Col>
+                    <Col xs={24} className="join_text">
+                      Link to join:
+                      
+                      <Button
+                        type="link"
+                        onClick={() => joinRoom(d.room_name,d.genre)}
+                        style={{ float: "right"}}
+                        
+                      >
+                        Click here
                       </Button>
                     </Col>
                   </Row>
@@ -242,6 +256,7 @@ const Home = (props) => {
         </div>
       */}
       </div>
+      <Footer />
     </div>
   );
 };

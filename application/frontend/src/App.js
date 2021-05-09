@@ -10,8 +10,12 @@ import NavBar from "./components/navbar";
 import Contactus from "./components/Contactus";
 import Aboutus from "./components/Aboutus";
 import axios from "axios";
+import Footer from "./components/Footer";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
+import BackgroundImage from "./assets/bgimages/test.png";
+import Ban_User from "./components/Ban_User";
+import DeleteRoom from "./components/DeleteRoom";
 
 class App extends React.Component {
   render() {
@@ -24,12 +28,15 @@ class App extends React.Component {
             <Route path="/Createpage" exact component={Createpage} />
             <Route path="/Join" exact component={Join} />
             <Route
-              path="/Room/:roomGenre/:roomName/:roomAge"
+              path="/Room/:roomGenre/:roomName/:numOfUsers/:roomAge"
               exact
               component={Room}
             />
             <Route path="/Contact" exact component={Contactus}></Route>
             <Route path="/Aboutus" exact component={Aboutus}></Route>
+            <Route path="/banuser" exact component={Ban_User}></Route>
+            <Route path="/deleteroom" exact component={DeleteRoom}></Route>
+
           </Switch>
         </div>
       );

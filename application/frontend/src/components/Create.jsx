@@ -9,6 +9,9 @@ import {
   message,
   Select,
   Radio,
+  Col,
+  Popup,
+  Popover,
 } from "antd";
 import Axios from "axios";
 import "../css/Create.css";
@@ -22,6 +25,25 @@ import {
   Router,
   Redirect,
 } from "react-router-dom";
+import Footer from "./Footer";
+import ToS from "./ToS"
+
+const genreOptions = [
+  { label: "Pop", value: "Pop" },
+  { label: "Rock", value: "Rock" },
+  { label: "Hip Hop", value: "Hip Hop" },
+  { label: "Electronic", value: "Electronic" },
+  { label: "Soundtrack", value: "Soundtrack" },
+  { label: "Indie", value: "Indie" },
+  { label: "R&B", value: "R&B" },
+  { label: "K-Pop", value: "K-Pop" },
+  { label: "Lo-fi", value: "Lo-fi" },
+  { label: "Country", value: "Country" },
+  { label: "Latin", value: "Latin" },
+  { label: "Christian", value: "Christian" },
+  { label: "Jazz", value: "Jazz" },
+  { label: "Classical", value: "Classical" },
+];
 
 const albumList = [
   {
@@ -119,7 +141,8 @@ const Create = (props) => {
   const [roomName, setRoomName] = useState();
   const [roomGenre, setGenre] = useState();
   const [roomStatus, setRoomStatus] = useState(1);
-  const [tosStatus, setTosStatus] = useState(false);
+  //const [tosStatus, setTosStatus] = useState(false);
+  const [noOfUsers, setNoOfUsers] = useState();
 
   const insertData = (rn, rg) => {
     const roomId = Math.floor(Math.random() * 2000000000);
@@ -169,14 +192,36 @@ const Create = (props) => {
     console.log(validateRN(modalRoomName));
     console.log(modalRoomGenre);
     console.log(modalRoomStatus);
-    console.log(modalTosStatus);
-    if (validateRN(modalRoomName) && modalRoomGenre && modalTosStatus) {
+    //console.log(modalTosStatus);
+    if (validateRN(modalRoomName) && modalRoomGenre //&& modalTosStatus
+    ) {
       console.log("handleOk");
 
       props.history.push(
-        "/Room/" + modalRoomGenre + "/" + modalRoomName + "/" + 0
+        "/Room/" +
+        modalRoomGenre +
+        "/" +
+        modalRoomName +
+        "/" +
+        modalUsers +
+        "/" +
+        0
       );
     }
+  };
+
+  const [isModalVisible1, setIsModalVisible1] = useState(false);
+  const history1 = useHistory();
+
+  const showModal1 = () => {
+    setIsModalVisible1(true);
+  };
+
+  const handleOk1 = () => {
+    setIsModalVisible1(false);
+  };
+  const handleCancel1 = () => {
+    setIsModalVisible1(false);
   };
 
   const [modalMessage, setModalMessage] = useState();
@@ -184,15 +229,20 @@ const Create = (props) => {
   const [modalRoomName, setModalRoomName] = useState();
   const [modalRoomGenre, setModalRoomGenre] = useState();
   const [modalRoomStatus, setModalRoomStatus] = useState();
-  const [modalTosStatus, setModalTosStatus] = useState();
+  //const [modalTosStatus, setModalTosStatus] = useState();
+  const [modalUsers, setModalUsers] = useState();
 
   const onClickFunks = () => {
     console.log("roomStatus");
     console.log(roomStatus);
+    let users = Math.floor(Math.random() * 100);
+    setNoOfUsers(users);
     const clickRoomName = roomName;
     const clickRoomGenre = roomGenre;
     const clickRoomStatus = roomStatus;
-    const clickTosStatus = tosStatus;
+    //const clickTosStatus = tosStatus;
+    const clickUsers = noOfUsers;
+    setModalUsers(clickUsers);
     setModalRoomName(clickRoomName);
     setModalRoomGenre(clickRoomGenre);
     if (clickRoomStatus == 1) {
@@ -200,7 +250,7 @@ const Create = (props) => {
     } else {
       setModalRoomStatus("Private Room");
     }
-    setModalTosStatus(clickTosStatus);
+    //setModalTosStatus(clickTosStatus);
 
     setModalMessage("");
     setSuccessModalMessage("");
@@ -210,9 +260,9 @@ const Create = (props) => {
     } else if (!clickRoomGenre) {
       setModalMessage("Please select a genre from the dropdown menu.");
       showModal();
-    } else if (!clickTosStatus) {
-      setModalMessage("You must accept the terms for service.");
-      showModal();
+      /*} else if (!clickTosStatus) {
+        setModalMessage("You must accept the terms for service.");
+        showModal();*/
     } else {
       setSuccessModalMessage(
         "You have successfully created a room! Press ok to continue."
@@ -222,9 +272,9 @@ const Create = (props) => {
     }
   };
 
-  const confirmTos = () => {
+  /*const confirmTos = () => {
     setTosStatus(!tosStatus);
-  };
+  };*/
 
   const formItemLayout = {
     labelCol: {
@@ -242,12 +292,24 @@ const Create = (props) => {
     },
   };
 
+  const publicRoomPopup = (
+    <div>
+      <p>A room searchable by anybody.</p>
+    </div>
+  );
+
+  const privateRoomPopup = (
+    <div>
+      <p>Only accessible if room link is shared.</p>
+    </div>
+  );
+
   return (
     <div className="create-main">
       <Form
         {...formItemLayout}
         className="text-color"
-        /*  style={{ marginTop: "150px", marginLeft: "400px" }} */
+      /*  style={{ marginTop: "150px", marginLeft: "400px" }} */
       >
         <Form.Item
           label="Roomname"
@@ -258,7 +320,7 @@ const Create = (props) => {
               message: "Please input a room name.",
             },
           ]}
-          //rules={[{ required: true, message: "Please input your roomname!" }]}
+        //rules={[{ required: true, message: "Please input your roomname!" }]}
         >
           <Input
             placeholder="e.g. Bill's Room of Splendor"
@@ -277,18 +339,19 @@ const Create = (props) => {
               message: "Please select a genre.",
             },
           ]}
-          //rules={[{ required: true, message: 'Province is required' }]}
+        //rules={[{ required: true, message: 'Province is required' }]}
         >
           <Select
             placeholder="Select genre"
+            options={genreOptions}
             onChange={(value) => {
               setGenre(value);
             }}
           >
-            <Option value="Rock">Rock</Option>
+            {/*             <Option value="Rock">Rock</Option>
             <Option value="Pop">Pop</Option>
             <Option value="Classical">Classical</Option>
-            <Option value="Country">Country</Option>
+            <Option value="Country">Country</Option> */}
           </Select>
         </Form.Item>
 
@@ -299,25 +362,30 @@ const Create = (props) => {
             }}
             value={roomStatus}
           >
-            <Radio className="text-color" value={1}>
-              Public Room
-            </Radio>
-            <Radio className="text-color" value={2}>
-              Private Room
-            </Radio>
+            <Popover content={publicRoomPopup} placement='top'>
+              <Radio className="text-color" value={1}>
+                Public Room
+                </Radio>
+            </Popover>
+            <Popover content={privateRoomPopup} placement='top'>
+              <Radio className="text-color" value={2}>
+                Private Room
+                </Radio>
+            </Popover>
           </Radio.Group>
         </Form.Item>
-
-        <Form.Item {...otherItemLayout}>
+        {/*<Form.Item {...otherItemLayout} className="text-color">
           <Checkbox
             onChange={confirmTos}
             required="required"
             className="text-color"
-          >
-            Click here to accept our Terms of Service.
-          </Checkbox>
-        </Form.Item>
-
+          ></Checkbox>
+          &nbsp;&nbsp;Click here to accept our{" "}
+          <a onClick={() => showModal1()} style={{ color: "var(--color3)" }}>
+            Terms of Service
+          </a>
+          
+          </Form.Item>*/}
         <Form.Item {...otherItemLayout} style={{ marginBottom: "0px" }}>
           <Button
             type="primary"
@@ -329,7 +397,7 @@ const Create = (props) => {
             Submit
           </Button>
         </Form.Item>
-      </Form>
+      </Form >
 
       <Modal
         title="Room Creation"
@@ -350,7 +418,18 @@ const Create = (props) => {
         <p>{successModalMessage}</p>
         <p style={{ color: "red" }}>{modalMessage}</p>
       </Modal>
-    </div>
+
+      <Modal
+        title="Terms of Service"
+        visible={isModalVisible1}
+        onOk={handleOk1}
+        onCancel={handleCancel1}
+        cancelButtonProps={{ style: { display: "none" } }}
+        okText="OK"
+      >
+        <ToS />
+      </Modal>
+    </div >
   );
 };
 
